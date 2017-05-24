@@ -93,7 +93,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
  
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
-        //cell.setUpViews()
+        cell.setUpViews()
         
         return cell
     }
