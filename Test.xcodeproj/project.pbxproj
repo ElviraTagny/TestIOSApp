@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3009DA1EC3486700D7813D /* BlueViewController.swift */; };
+		8F3145DD1EDC660300E23398 /* ChatControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */; };
+		8F3145E21EDC6BCF00E23398 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */; };
+		8F3145F11EDD633100E23398 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145EF1EDD633100E23398 /* Message.swift */; };
+		8F3145F21EDD633100E23398 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */; };
 		8F4EFE471EC30E8900D0B88B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */; };
 		8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE481EC30E8900D0B88B /* ViewController.swift */; };
 		8F4EFE4E1EC30E8900D0B88B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F4EFE4D1EC30E8900D0B88B /* Assets.xcassets */; };
@@ -39,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		8F3009DA1EC3486700D7813D /* BlueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
+		8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatControllerHelper.swift; sourceTree = "<group>"; };
+		8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
+		8F3145EF1EDD633100E23398 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F4EFE431EC30E8900D0B88B /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F4EFE481EC30E8900D0B88B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +93,9 @@
 		8F4EFE3A1EC30E8900D0B88B = {
 			isa = PBXGroup;
 			children = (
+				8F3145EF1EDD633100E23398 /* Message.swift */,
+				8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */,
+				8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */,
 				8F4EFE451EC30E8900D0B88B /* Test */,
 				8F4EFE5A1EC30E8900D0B88B /* TestTests */,
 				8F4EFE651EC30E8900D0B88B /* TestUITests */,
@@ -115,6 +126,7 @@
 				8F3009DA1EC3486700D7813D /* BlueViewController.swift */,
 				8FDBE9B81ECB27E800CD272C /* RedViewController.swift */,
 				8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */,
+				8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -271,12 +283,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3145F11EDD633100E23398 /* Message.swift in Sources */,
 				8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */,
 				8FDBE9B91ECB27E800CD272C /* RedViewController.swift in Sources */,
 				8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */,
 				8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */,
+				8F3145DD1EDC660300E23398 /* ChatControllerHelper.swift in Sources */,
 				8F4EFE471EC30E8900D0B88B /* AppDelegate.swift in Sources */,
 				8FDBE9E51ECEE7AF00CD272C /* GreenViewController.swift in Sources */,
+				8F3145F21EDD633100E23398 /* Message+CoreDataProperties.swift in Sources */,
+				8F3145E21EDC6BCF00E23398 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +558,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */,
+			);
+			currentVersion = 8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */;
+			path = TestModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F4EFE3B1EC30E8900D0B88B /* Project object */;
 }

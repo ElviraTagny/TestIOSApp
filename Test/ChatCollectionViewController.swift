@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
-private let reuseIdentifier = "cell"
+let welcomeMessage = "Bonjour ! Que puis-je faire pour vous?"
+
+let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
 
 class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var messagesCollectionView: UICollectionView!
+    private let reuseIdentifier = "cell"
     
+    var messages:[Message]?
+    
+   @IBOutlet weak var messagesCollectionView: UICollectionView!
     
     @IBAction func closeScreen(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -35,34 +41,36 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         self.messagesCollectionView!.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.messagesCollectionView!.delegate = self
         self.messagesCollectionView!.dataSource = self
+        self.messagesCollectionView!.alwaysBounceVertical = true
+        setUpData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*class MessageCell: UICollectionViewCell {
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setUpViews()
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        func setUpViews(){
-            backgroundColor = UIColor.blue
-        }
-    }*/
+
     class MessageCell: UICollectionViewCell {
+        
+        var message: Message? {
+            didSet{
+                chatMessage.text = message?.textMessage as String?
+            }
+        }
         
         let profileImageView: UIImageView = {
             let image = UIImageView ()
-                image.contentMode = .scaleAspectFill
+            image.contentMode = .scaleAspectFill
+            image.layer.cornerRadius = 20
+            image.layer.masksToBounds = true
             return image
+        }()
+        
+        let chatMessage: UILabel = {
+            let message = UILabel()
+            message.text = welcomeMessage
+            message.adjustsFontSizeToFitWidth = true
+            return message
         }()
         
         override init(frame: CGRect) {
@@ -75,12 +83,18 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         func setUpViews(){
-            addSubview(profileImageView)
+            backgroundColor = UIColor.lightGray
             
+            addSubview(profileImageView)
             profileImageView.image = UIImage(named: "user_icon")
             profileImageView.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(68)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(50)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
+            
+            addSubview(chatMessage)
+            chatMessage.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-60-[label]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["label": chatMessage]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[label]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["label": chatMessage]))
         }
     }
 
@@ -95,25 +109,31 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         cell.setUpViews()
         
+        if let msg = messages?[indexPath.item] {
+            cell.message = msg
+        }
+        let size = CGSize(width: 250, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let estimatedFrame = NSString(string: welcomeMessage).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)], context: nil)
+        cell.chatMessage.frame = CGRect(x: 0, y: 0, width: 250, height: estimatedFrame.height + 20)
+        
         return cell
     }
     
-    /*func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }*/
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
-    }
-
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+        if let count = messages?.count {
+            return count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellSize = CGSize(width: view.frame.width, height: 100)
+        
+        let size = CGSize(width: view.frame.width, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let estimatedFrame = NSString(string: welcomeMessage).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)], context: nil)
+        let cellSize = CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
         return cellSize
     }
 
@@ -130,6 +150,15 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
+     
+     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     
+     func numberOfSections(in collectionView: UICollectionView) -> Int {
+     // #warning Incomplete implementation, return the number of sections
+     return 1
+     }
     */
 
 }
