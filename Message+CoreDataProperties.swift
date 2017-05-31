@@ -2,7 +2,7 @@
 //  Message+CoreDataProperties.swift
 //  Test
 //
-//  Created by Natixis on 30/05/2017.
+//  Created by Natixis on 31/05/2017.
 //  Copyright © 2017 Natixis. All rights reserved.
 //
 
@@ -16,7 +16,8 @@ extension Message {
         return NSFetchRequest<Message>(entityName: "Message");
     }
 
-    @NSManaged public var textMessage: String?
     @NSManaged public var dateMessage: NSDate?
+    @NSManaged public var textMessage: String?
+    @NSManaged public var isSender: NSNumber?
 
 }

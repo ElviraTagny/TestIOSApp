@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import DoYouDreamUp
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

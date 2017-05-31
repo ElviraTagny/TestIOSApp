@@ -7,15 +7,17 @@
 //
 
 import UIKit
-import CoreData
 import DoYouDreamUp
+import CoreData
 
-let welcomeMessage = "Bonjour ! Que puis-je faire pour vous?"
+let welcomeMessage = "DYDU à votre disposition ! Que puis-je faire pour vous?"
 
-let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+//let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
 
 class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate {
-
+    
+    let managedObjectContext = delegate?.persistentContainer.viewContext
+    
     private let reuseIdentifier = "cell"
     
     var messages:[Message]?
@@ -30,12 +32,22 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var inputMessage: UITextField!
     
     @IBAction func onSendButtonPressed(_ sender: Any) {
-        //add message to messages through helper
+        
+        //add message to messages ans save data
+        let message = createMessageWithText(text: inputMessage.text!, minutesAgo: 0, isSender: true, context: managedObjectContext!)
+        saveData()
+        //loadData()
+        inputMessage.text = ""
+        
+        //update messages and collectionView
+        messages?.append(message)
+        let insertionIndexPath = NSIndexPath(item: (messages!.count - 1), section: 0)
+        messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
         
         //Talk to Bot
         //DoYouDreamUpManager.sharedInstance().talk(inputMessage.text)
-        if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text, extraParameters: ["action":"clickChangeUser"]) ) {
-            displayMessage("Talking action send…")
+        if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text!, extraParameters: ["action":"clickChangeUser"]) ) {
+            displayMessage(message: "Talking action sent: \(inputMessage.text)")
         }
     }
 
@@ -50,12 +62,12 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         self.messagesCollectionView!.delegate = self
         self.messagesCollectionView!.dataSource = self
         self.messagesCollectionView!.alwaysBounceVertical = true
-        setUpData()
+        initData()
         
         let currentLanguage = "fr"
         //NSLog("currentLanguage=\(currentLanguage)")
         
-        DoYouDreamUpManager.sharedInstance().configureWithDelegate(self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
+        DoYouDreamUpManager.sharedInstance().configure(with: self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
                                                                    space: nil,
                                                                    language: currentLanguage,
                                                                    testMode:true,
@@ -65,10 +77,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                                                                    backupServerUrl:nil)
 
         if (DoYouDreamUpManager.sharedInstance().connect()) {
-            displayMessage("Connecting…")
+            displayMessage(message: "Connecting…")
         }
         //Define a specific user if you want to, this can be done anytime
-        //DoYouDreamUpManager.setUserID("USERID_XXX")
+        DoYouDreamUpManager.setUserID("USERID_123")
         DoYouDreamUpManager.displayLog(true)
     }
     
@@ -95,7 +107,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         let chatMessage: UILabel = {
             let message = UILabel()
-            message.text = welcomeMessage
+            message.text = ""
             message.adjustsFontSizeToFitWidth = true
             return message
         }()
@@ -110,10 +122,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         func setUpViews(){
-            backgroundColor = UIColor.lightGray
             
             addSubview(profileImageView)
-            profileImageView.image = UIImage(named: "user_icon")
             profileImageView.translatesAutoresizingMaskIntoConstraints = false
             addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
             addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(50)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
@@ -138,6 +148,15 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         if let msg = messages?[indexPath.item] {
             cell.message = msg
+            if msg.isSender!.boolValue {
+                cell.backgroundColor = UIColor.blue
+                cell.profileImageView.image = UIImage(named: "user_icon")
+            }
+            else {
+                cell.backgroundColor = UIColor.lightGray
+                cell.profileImageView.image = UIImage(named: "dydu")
+            }
+
         }
         let size = CGSize(width: 250, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
@@ -165,23 +184,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-     
-     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
      // #warning Incomplete implementation, return the number of sections
      return 1
@@ -191,40 +193,60 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     // MARK: DoYouDreamUp stack
     
     //Implement the callback delegate
-    func dydu_receivedTalkResponseWithMsg(message: String, withExtraParameters extraParameters: [NSObject : AnyObject]?) {
-        // add answer to messages through helper
-    
+    func dydu_receivedTalkResponse(withMsg message: String, withExtraParameters extraParameters: [AnyHashable : Any]?) {
+        displayMessage(message: message, withPrefix: "Received talk response")
+        //add message to messages ans save data
+        let message = createMessageWithText(text: message, minutesAgo: 0, isSender: false, context: managedObjectContext!)
+        saveData()
+        
+        //update messages and collectionView
+        messages?.append(message)
+        let insertionIndexPath = NSIndexPath(item: (messages!.count - 1), section: 0)
+        messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
     }
 
     ///Callback to notify that the connection failed with the given error
     ///@param error the given error
-    func dydu_connexionDidFailWithError(error: NSError) {}
+    public func dydu_connexionDidFailWithError(_ error: Error) {
+        displayMessage(message: "Connection failed with error \(error.localizedDescription)")
+    }
     
     ///Callback to notify that the connection closed correctly
-    func dydu_connexionDidClosed() {}
+    func dydu_connexionDidClosed() {
+        displayMessage(message: "Connection closed correctly")
+    }
     
     ///Callback to notify that the connection opened
-    ///@param contextId the contextId used in the current connexion
-    func dydu_connexionDidOpenWithContextId(contextId:String?) {}
-
-    func dydu_history(interactions: [AnyObject]?, forContextId contextId: String?) {
-        displayMessage("received #=\(interactions?.count) history entries for contextId=\(contextId)", withPrefix: "Response=")
-        if (interactions?.count > 0) {
-            let item = interactions![0]
-            displayMessage("First item=\(item["text"]) from=\(item["from"]) type=\(item["type"]) user=\(item["user"])", withPrefix: "Response=")
+    ///@param contextId the contextId used in the current connexion, could be nil at this step for the first login
+    /// use the dydu_contextIdChanged to get information about changes
+    public func dydu_connexionDidOpen(withContextId contextId: String?) {
+        displayMessage(message: "Connection opened correctly")
+    }
+    
+    //Check the history of interactions
+    func dydu_history(_ interactions: [Any]?, forContextId contextId: String?) {
+        displayMessage(message: "received #=\(interactions?.count) history entries for contextId=\(contextId)", withPrefix: "History")
+        if ((interactions?.count)! > 0) {
+            let item = interactions![0] as AnyObject
+            displayMessage(message: "Hola"/*"First item=\(item["text"]) from=\(item["from"]) type=\(item["type"]) user=\(item["user"])"*/, withPrefix: "Response=")
         }
     }
     
-    func dydu_receivedNotification(message: String, withCode code: String) {
-        displayMessage("received notification #=\(message) withCode: \(code)")
+    func dydu_receivedNotification(_ message: String, withCode code: String) {
+        displayMessage(message: "received notification #=\(message) withCode: \(code)", withPrefix: "Notification")
+    }
+    
+    func dydu_contextIdChanged(_ contextId: String) {
+        displayMessage(message: "ContextId changed")
     }
     
     // MARK: Utils
     
     func displayMessage(message:String, withPrefix prefix:String) {
-        print("Actions - \(message)")
-        let text = "\(prefix)\(message)\n\(self.textView.text)"
-        self.textView.text = text
+        print("ChatBot - \(prefix) - \(message)")
+    }
+    func displayMessage(message:String){
+        print("ChatBot - \(message)")
     }
 
 }

@@ -14,6 +14,16 @@ let delegate = UIApplication.shared.delegate as? AppDelegate
 
 extension ChatCollectionViewController {
     
+  func initData(){
+
+        clearData()
+        if let managedObjectContext = delegate?.persistentContainer.viewContext {
+            createMessageWithText(text: welcomeMessage, minutesAgo: 10, isSender: false, context: managedObjectContext)
+            saveData()
+        }
+        loadData()
+    }
+    
     func clearData(){
         if let managedObjectContext = delegate?.persistentContainer.viewContext {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
@@ -29,25 +39,16 @@ extension ChatCollectionViewController {
         }
     }
     
-    func setUpData(){
-
-        clearData()
-        
+    func saveData(){
         if let managedObjectContext = delegate?.persistentContainer.viewContext {
-            
-            createMessageWithText(text: welcomeMessage, minutesAgo: 10, context: managedObjectContext)
-            createMessageWithText(text: "Do you dream up à votre disposition !", minutesAgo: 5, context: managedObjectContext)
-            createMessageWithText(text: "Oyé oyé le bonjour les amis...", minutesAgo: 2, context: managedObjectContext)
-            
             do {
                 try managedObjectContext.save()
             } catch let error {
                 print(error)
             }
         }
-        loadData()
     }
-    
+
     func loadData(){
         if let managedObjectContext = delegate?.persistentContainer.viewContext {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
@@ -61,9 +62,11 @@ extension ChatCollectionViewController {
         }
     }
     
-    func createMessageWithText(text: String, minutesAgo: Double, context: NSManagedObjectContext){
+    func createMessageWithText(text: String, minutesAgo: Double, isSender: Bool = false, context: NSManagedObjectContext) -> Message {
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.textMessage = text
         message.dateMessage = NSDate().addingTimeInterval(-minutesAgo*60)
+        message.isSender = NSNumber(value: isSender)
+        return message
     }
 }
