@@ -37,7 +37,7 @@ extension ChatCollectionViewController {
             
             createMessageWithText(text: welcomeMessage, minutesAgo: 10, context: managedObjectContext)
             createMessageWithText(text: "Do you dream up à votre disposition !", minutesAgo: 5, context: managedObjectContext)
-            createMessageWithText(text: "Oooh papayéyé ...", minutesAgo: 2, context: managedObjectContext)
+            createMessageWithText(text: "Oyé oyé le bonjour les amis...", minutesAgo: 2, context: managedObjectContext)
             
             do {
                 try managedObjectContext.save()

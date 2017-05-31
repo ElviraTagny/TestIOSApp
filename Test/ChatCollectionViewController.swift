@@ -8,12 +8,13 @@
 
 import UIKit
 import CoreData
+import DoYouDreamUp
 
 let welcomeMessage = "Bonjour ! Que puis-je faire pour vous?"
 
 let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
 
-class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate {
 
     private let reuseIdentifier = "cell"
     
@@ -23,12 +24,19 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBAction func closeScreen(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        DoYouDreamUpManager.sharedInstance().disconnect();
     }
     
     @IBOutlet weak var inputMessage: UITextField!
     
     @IBAction func onSendButtonPressed(_ sender: Any) {
+        //add message to messages through helper
         
+        //Talk to Bot
+        //DoYouDreamUpManager.sharedInstance().talk(inputMessage.text)
+        if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text, extraParameters: ["action":"clickChangeUser"]) ) {
+            displayMessage("Talking action send…")
+        }
     }
 
     override func viewDidLoad() {
@@ -43,6 +51,25 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         self.messagesCollectionView!.dataSource = self
         self.messagesCollectionView!.alwaysBounceVertical = true
         setUpData()
+        
+        let currentLanguage = "fr"
+        //NSLog("currentLanguage=\(currentLanguage)")
+        
+        DoYouDreamUpManager.sharedInstance().configureWithDelegate(self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
+                                                                   space: nil,
+                                                                   language: currentLanguage,
+                                                                   testMode:true,
+                                                                   solutionUsed: Assistant,
+                                                                   pureLivechat: false,
+                                                                   serverUrl:"wss://jp.createmyassistant.com/servlet/chat",
+                                                                   backupServerUrl:nil)
+
+        if (DoYouDreamUpManager.sharedInstance().connect()) {
+            displayMessage("Connecting…")
+        }
+        //Define a specific user if you want to, this can be done anytime
+        //DoYouDreamUpManager.setUserID("USERID_XXX")
+        DoYouDreamUpManager.displayLog(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,5 +187,44 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
      return 1
      }
     */
+    
+    // MARK: DoYouDreamUp stack
+    
+    //Implement the callback delegate
+    func dydu_receivedTalkResponseWithMsg(message: String, withExtraParameters extraParameters: [NSObject : AnyObject]?) {
+        // add answer to messages through helper
+    
+    }
+
+    ///Callback to notify that the connection failed with the given error
+    ///@param error the given error
+    func dydu_connexionDidFailWithError(error: NSError) {}
+    
+    ///Callback to notify that the connection closed correctly
+    func dydu_connexionDidClosed() {}
+    
+    ///Callback to notify that the connection opened
+    ///@param contextId the contextId used in the current connexion
+    func dydu_connexionDidOpenWithContextId(contextId:String?) {}
+
+    func dydu_history(interactions: [AnyObject]?, forContextId contextId: String?) {
+        displayMessage("received #=\(interactions?.count) history entries for contextId=\(contextId)", withPrefix: "Response=")
+        if (interactions?.count > 0) {
+            let item = interactions![0]
+            displayMessage("First item=\(item["text"]) from=\(item["from"]) type=\(item["type"]) user=\(item["user"])", withPrefix: "Response=")
+        }
+    }
+    
+    func dydu_receivedNotification(message: String, withCode code: String) {
+        displayMessage("received notification #=\(message) withCode: \(code)")
+    }
+    
+    // MARK: Utils
+    
+    func displayMessage(message:String, withPrefix prefix:String) {
+        print("Actions - \(message)")
+        let text = "\(prefix)\(message)\n\(self.textView.text)"
+        self.textView.text = text
+    }
 
 }
