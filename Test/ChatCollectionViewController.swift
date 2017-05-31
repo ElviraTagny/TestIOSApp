@@ -36,8 +36,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         //add message to messages ans save data
         let message = createMessageWithText(text: inputMessage.text!, minutesAgo: 0, isSender: true, context: managedObjectContext!)
         saveData()
-        //loadData()
-        inputMessage.text = ""
         
         //update messages and collectionView
         messages?.append(message)
@@ -47,8 +45,11 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         //Talk to Bot
         //DoYouDreamUpManager.sharedInstance().talk(inputMessage.text)
         if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text!, extraParameters: ["action":"clickChangeUser"]) ) {
-            displayMessage(message: "Talking action sent: \(inputMessage.text)")
+            displayMessage(message: "Talking action sent: \(inputMessage.text!)")
         }
+        //clear input field
+        inputMessage.text = ""
+        
     }
 
     override func viewDidLoad() {
@@ -194,7 +195,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     //Implement the callback delegate
     func dydu_receivedTalkResponse(withMsg message: String, withExtraParameters extraParameters: [AnyHashable : Any]?) {
-        displayMessage(message: message, withPrefix: "Received talk response")
+        displayMessage(message: message, withPrefix: "Response")
+        //Exemple: Je n'ai malheureusement pas compris. Pouvez-vous reformuler votre phrase ou faire une nouvelle demande ?<silent><br><br><a href="reword/Faire une nouvelle demande">Faire une nouvelle demande</a></silent>
+
+        
         //add message to messages ans save data
         let message = createMessageWithText(text: message, minutesAgo: 0, isSender: false, context: managedObjectContext!)
         saveData()
@@ -243,10 +247,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     // MARK: Utils
     
     func displayMessage(message:String, withPrefix prefix:String) {
-        print("ChatBot - \(prefix) - \(message)")
+        print("CB- \(prefix) - \(message)")
     }
     func displayMessage(message:String){
-        print("ChatBot - \(message)")
+        print("CB- \(message)")
     }
 
 }
