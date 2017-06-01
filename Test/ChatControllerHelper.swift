@@ -14,12 +14,14 @@ let delegate = UIApplication.shared.delegate as? AppDelegate
 
 extension ChatCollectionViewController {
     
-  func initData(){
-
-        clearData()
-        if let managedObjectContext = delegate?.persistentContainer.viewContext {
-            createMessageWithText(text: welcomeMessage, minutesAgo: 10, isSender: false, context: managedObjectContext)
-            saveData()
+    func initData(){
+        //clearData()
+        loadData()
+        if messages?.count == 0 {
+            if let managedObjectContext = delegate?.persistentContainer.viewContext {
+                createMessageWithText(text: welcomeMessage, minutesAgo: 0, isSender: false, context: managedObjectContext)
+                saveData()
+            }
         }
         loadData()
     }
