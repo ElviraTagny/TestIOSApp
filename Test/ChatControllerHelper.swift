@@ -35,6 +35,7 @@ extension ChatCollectionViewController {
                     managedObjectContext.delete(msg)
                 }
                 try (managedObjectContext.save())
+                messages?.removeAll()
             } catch let error {
                 print(error)
             }

@@ -9,26 +9,43 @@
 import UIKit
 import DoYouDreamUp
 import CoreData
+//import Kanna
+//import SwiftSoup
+import Speech
+import AVFoundation
 
 let welcomeMessage = "DYDU à votre disposition ! Que puis-je faire pour vous?"
 
 //let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
 
-class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate, UITextViewDelegate {
+class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate, UITextViewDelegate, SFSpeechRecognizerDelegate {
     
     let managedObjectContext = delegate?.persistentContainer.viewContext
     private let reuseIdentifier = "cell"
     var messages:[Message]?
     var textFontSize = 12
-    var dateFontSize = 10
+    var dateFontSize = 9
    @IBOutlet weak var messagesCollectionView: UICollectionView!
     //@IBOutlet weak var inputMessage: UITextField!
     @IBOutlet weak var inputMessage: UITextView!
+    @IBOutlet weak var microButton: UIButton!
     
+    
+    private let speechRecognizer : SFSpeechRecognizer! = SFSpeechRecognizer(locale: Locale.init(identifier: "fr-FR"))
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
     
     
     @IBAction func onMicroPressed(_ sender: Any) {
         displayMessage(message: "Micro pressed")
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            microButton.isEnabled = false
+        } else {
+            startRecording()
+        }
     }
     
     @IBAction func closeScreen(_ sender: Any) {
@@ -38,6 +55,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBAction func clearAllMessages(_ sender: Any) {
         clearData()
+        messagesCollectionView?.reloadData()
+    }
+    
+    func onSpeakerPressed(_ sender: Any){
+        //get the selected message and read its text
+        let message = messages?[selectedItemIndex]
+        read(text: (message?.textMessage!)!)
     }
     
     @IBAction func onSendButtonPressed(_ sender: Any) {
@@ -54,7 +78,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let index = messages!.count > 0 ? (messages!.count - 1) : 0
             let insertionIndexPath = NSIndexPath(item: index, section: 0)
             messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
-        
+            scrollToBottom()
+            
             //Talk to Bot
             //DoYouDreamUpManager.sharedInstance().talk(inputMessage.text)
             if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text!, extraParameters: ["action":"clickChangeUser"]) ) {
@@ -70,21 +95,18 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         self.inputMessage.delegate = self
         view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-        messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
         // Register cell classes
         self.messagesCollectionView!.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.messagesCollectionView!.delegate = self
         self.messagesCollectionView!.dataSource = self
         self.messagesCollectionView!.alwaysBounceVertical = true
         initData()
+        scrollToBottom()
         
+        /**********$ DYDU init block ******************/
         let currentLanguage = "fr"
         //NSLog("currentLanguage=\(currentLanguage)")
-        
         DoYouDreamUpManager.sharedInstance().configure(with: self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
                                                                    space: nil,
                                                                    language: currentLanguage,
@@ -100,82 +122,106 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         //Define a specific user if you want to, this can be done anytime
         DoYouDreamUpManager.setUserID("USERID_123")
         DoYouDreamUpManager.displayLog(true)
+        /***********************************************/
+        
+        /************ Speech recognition init block *******************/
+        speechRecognizer.delegate = self
+        SFSpeechRecognizer.requestAuthorization { (authStatus) in
+            var isButtonEnabled = false
+            switch authStatus {
+                case .authorized:
+                    isButtonEnabled = true
+                case .denied:
+                    isButtonEnabled = false
+                    print("User denied access to speech recognition")
+                case .restricted:
+                    isButtonEnabled = false
+                    print("Speech recognition restricted on this device")
+                case .notDetermined:
+                    isButtonEnabled = false
+                    print("Speech recognition not yet authorized")
+            }
+            OperationQueue.main.addOperation() {
+                self.microButton.isEnabled = isButtonEnabled
+            }
+        }
+        /**************************************************************/
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    class MessageCell: UICollectionViewCell {
-        
-        var message: Message? {
-            didSet{
-                messageTextView.text = message?.textMessage as String?
-                
-                if let date = message?.dateMessage {
-                    let dateformatter = DateFormatter()
-                    dateformatter.dateFormat = "h:mm a"
-                    timeLabel.text = dateformatter.string(from: date as Date)
-                }
-            }
-        }
-        
-        let profileImageView: UIImageView = {
-            let image = UIImageView ()
-            image.contentMode = .scaleAspectFill
-            image.layer.cornerRadius = 20
-            image.layer.masksToBounds = true
-            return image
-        }()
-        
-        let messageTextView: UITextView = {
-            let messageTextView = UITextView()
-            messageTextView.text = ""
-            messageTextView.font = UIFont.systemFont(ofSize: 12)
-            messageTextView.layer.cornerRadius = 15
-            messageTextView.layer.masksToBounds = true
-            return messageTextView
-        }()
-        
-        let timeLabel: UILabel = {
-            let timeLabel = UILabel()
-            timeLabel.text = ""
-            timeLabel.font = UIFont.systemFont(ofSize: 10)
-            timeLabel.textColor = UIColor.darkGray
-            timeLabel.textAlignment = .right
-            return timeLabel
-        }()
-
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setUpViews()
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        func setUpViews(){
-            
-            addSubview(profileImageView)
-            profileImageView.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
-            
-            addSubview(messageTextView)
-            messageTextView.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[messageTextView]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["messageTextView": messageTextView]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[messageTextView]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["messageTextView": messageTextView]))
-            
-            addSubview(timeLabel)
-            timeLabel.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[timeLabel(50)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["timeLabel": timeLabel]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[timeLabel(15)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["timeLabel": timeLabel, "messageTextView": messageTextView]))
+    
+    // MARK: Speech implementation
+    
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if available {
+            microButton.isEnabled = true
+        } else {
+            microButton.isEnabled = false
         }
     }
-
+    
+    func startRecording() {
+        
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            try audioSession.setMode(AVAudioSessionModeMeasurement)
+            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+        
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        guard let inputNode = audioEngine.inputNode else {
+            fatalError("Audio engine has no input node")
+        }
+        
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            if result != nil {
+                self.inputMessage.text = result?.bestTranscription.formattedString
+                isFinal = (result?.isFinal)!
+            }
+            
+            if error != nil || isFinal {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                
+                self.microButton.isEnabled = true
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            print("audioEngine couldn't start because of an error.")
+        }
+    }
+    
 
     // MARK: UICollectionViewDelegate
 
@@ -235,6 +281,96 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
      return 1
      }
     */
+    var selectedItemIndex = 0
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        selectedItemIndex = indexPath.item
+    }
+    
+    class MessageCell: UICollectionViewCell {
+        
+        var message: Message? {
+            didSet{
+                messageTextView.text = message?.textMessage as String?
+                
+                if let date = message?.dateMessage {
+                    let dateformatter = DateFormatter()
+                    dateformatter.dateFormat = "h:mm a"
+                    timeLabel.text = dateformatter.string(from: date as Date)
+                }
+            }
+        }
+        
+        let profileImageView: UIImageView = {
+            let imageView = UIImageView ()
+            imageView.contentMode = .scaleAspectFill
+            imageView.layer.cornerRadius = 20
+            imageView.layer.masksToBounds = true
+            return imageView
+        }()
+        
+        let speakerButton: UIButton = {
+            let button = UIButton ()
+            //let imageView = UIImageView()
+            //imageView.image = UIImage(named: "speaker2")
+            button.contentMode = .scaleAspectFill
+            button.setImage(UIImage(named: "speaker2"), for: .normal)
+            button.addTarget(self, action: #selector(onSpeakerPressed), for: .touchUpInside)
+            return button
+        }()
+        
+        let messageTextView: UITextView = {
+            let messageTextView = UITextView()
+            messageTextView.text = ""
+            messageTextView.font = UIFont.systemFont(ofSize: 12)
+            messageTextView.layer.cornerRadius = 15
+            messageTextView.layer.masksToBounds = true
+            return messageTextView
+        }()
+        
+        let timeLabel: UILabel = {
+            let timeLabel = UILabel()
+            timeLabel.text = ""
+            timeLabel.font = UIFont.systemFont(ofSize: 9)
+            timeLabel.textColor = UIColor.darkGray
+            timeLabel.textAlignment = .right
+            return timeLabel
+        }()
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            setUpViews()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setUpViews(){
+            
+            addSubview(profileImageView)
+            profileImageView.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
+            
+            addSubview(messageTextView)
+            messageTextView.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": messageTextView]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": messageTextView]))
+            
+            addSubview(timeLabel)
+            timeLabel.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(40)]-15-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": timeLabel]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[text(10)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": timeLabel]))
+            
+            addSubview(speakerButton)
+            speakerButton.translatesAutoresizingMaskIntoConstraints = false
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[image(10)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": speakerButton]))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": speakerButton]))
+    
+        }
+    }
+    
+    // MARK TextView Delegate
     
     func textViewDidChange(_ textView: UITextView) {
         let textViewFixedWidth: CGFloat = self.inputMessage.frame.size.width
@@ -255,14 +391,16 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     func dydu_receivedTalkResponse(withMsg message: String, withExtraParameters extraParameters: [AnyHashable : Any]?) {
         displayMessage(message: message, withPrefix: "Response")
 
+        let response = parseHtmlResponse(response: message);
         //add message to messages ans save data
-        let message = createMessageWithText(text: message, minutesAgo: 0, isSender: false, context: managedObjectContext!)
+        let message = createMessageWithText(text: response, minutesAgo: 0, isSender: false, context: managedObjectContext!)
         saveData()
         
         //update messages and collectionView
         messages?.append(message)
         let insertionIndexPath = NSIndexPath(item: (messages!.count - 1), section: 0)
         messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
+        scrollToBottom()
     }
 
     ///Callback to notify that the connection failed with the given error
@@ -307,6 +445,30 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
     func displayMessage(message:String){
         print("CB- \(message)")
+    }
+    
+    func scrollToBottom(){
+        let lastItemIndex = NSIndexPath(item: (messages!.count - 1), section: 0)
+        messagesCollectionView.scrollToItem(at: lastItemIndex as IndexPath, at: UICollectionViewScrollPosition.top, animated: false)
+    }
+    
+    func parseHtmlResponse(response: String) -> String {
+        let encodedData = response.data(using: String.Encoding.utf8)!
+        do {
+            let nsAttributedString = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
+            return nsAttributedString.string
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        return response
+    }
+    
+    func read(text: String){
+        let synthesizer = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.rate = 0.4
+        
+        synthesizer.speak(utterance)
     }
 
 }

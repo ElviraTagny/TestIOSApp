@@ -319,6 +319,7 @@
                     <connections>
                         <outlet property="inputMessage" destination="jjO-2g-Ajr" id="iTH-e7-0dv"/>
                         <outlet property="messagesCollectionView" destination="4qc-76-aIm" id="R3f-Hw-u4c"/>
+                        <outlet property="microButton" destination="Vwa-Zd-gFJ" id="Gn4-Qq-MqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0Y-Kj-pd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
