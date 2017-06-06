@@ -22,6 +22,7 @@
 		8FB96FD91ED5E0C20099DC37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FB96FD71ED5E0C20099DC37 /* Main.storyboard */; };
 		8FDBAEF01EDF10FE00BFD635 /* Test-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145F31EDDB93400E23398 /* Test-Bridging-Header.h */; };
 		8FDBAEF21EDF25E900BFD635 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBAEF11EDF25E900BFD635 /* Message.swift */; };
+		8FDBAEF41EE6FD0800BFD635 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBAEF31EE6FD0800BFD635 /* CustomCollectionView.swift */; };
 		8FDBE9B91ECB27E800CD272C /* RedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBE9B81ECB27E800CD272C /* RedViewController.swift */; };
 		8FDBE9E51ECEE7AF00CD272C /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
 		8FB96FD81ED5E0C20099DC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FDBAEF11EDF25E900BFD635 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8FDBAEF31EE6FD0800BFD635 /* CustomCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		8FDBE9B81ECB27E800CD272C /* RedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
 		8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
 		969B5A2CED823B5C76F76AD5 /* Pods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Test/Pods-Test.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */,
 				8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */,
 				8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */,
+				8FDBAEF31EE6FD0800BFD635 /* CustomCollectionView.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				8FDBAEF01EDF10FE00BFD635 /* Test-Bridging-Header.h in Sources */,
 				8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */,
 				8FDBAEF21EDF25E900BFD635 /* Message.swift in Sources */,
+				8FDBAEF41EE6FD0800BFD635 /* CustomCollectionView.swift in Sources */,
 				8FDBE9B91ECB27E800CD272C /* RedViewController.swift in Sources */,
 				8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */,
 				8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */,

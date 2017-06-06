@@ -134,16 +134,16 @@ class BlueViewController: UIViewController, SFSpeechRecognizerDelegate  {
                 
                 self.speechText.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
-            }
-            
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
                 
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-                
-                self.microButton.isEnabled = true
+                if error != nil || isFinal {
+                    self.audioEngine.stop()
+                    inputNode.removeTap(onBus: 0)
+                    
+                    self.recognitionRequest = nil
+                    self.recognitionTask = nil
+                    
+                    self.microButton.isEnabled = true
+                }
             }
         })
         
@@ -159,9 +159,6 @@ class BlueViewController: UIViewController, SFSpeechRecognizerDelegate  {
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-        
-        speechText.text = "Say something, I'm listening!"
-        
     }
     
     /*

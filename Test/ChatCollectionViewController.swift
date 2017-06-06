@@ -58,9 +58,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         messagesCollectionView?.reloadData()
     }
     
-    func onSpeakerPressed(_ sender: Any){
+    func onSpeakerPressed(_ sender: UIButton!){
+        //UIApplication.shared.sendAction(#selector(collectionView(_:didSelectItemAt:)), to: nil, from: self, for: nil)
         //get the selected message and read its text
-        let message = messages?[selectedItemIndex]
+        let message = messages?[sender.tag]
         read(text: (message?.textMessage!)!)
     }
     
@@ -94,8 +95,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         
         self.inputMessage.delegate = self
-        view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-        self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+        //view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+        //self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
         // Register cell classes
         self.messagesCollectionView!.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.messagesCollectionView!.delegate = self
@@ -236,14 +237,41 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         if let mess = messages?[indexPath.item] {
             cell.message = mess
             if mess.isSender!.boolValue {
-                cell.messageTextView.backgroundColor = UIColor(red: 103/255, green: 173/255, blue: 237/255, alpha: 1.0) //color: blue sky
                 cell.profileImageView.image = UIImage(named: "user_icon")
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[image(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                
+                cell.messageTextView.backgroundColor = UIColor(red: 103/255, green: 173/255, blue: 237/255, alpha: 1.0) //color: blue sky
+                cell.messageTextView.textAlignment = .right
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(200)]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                
+                cell.timeLabel.textAlignment = .left
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)][message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
             }
             else {
-                cell.messageTextView.backgroundColor = UIColor.white
-                    //UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
                 cell.profileImageView.image = UIImage(named: "dydu")
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                
+                cell.messageTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+                cell.messageTextView.textAlignment = .left
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text(200)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                
+                cell.timeLabel.textAlignment = .right
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message][time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                
+                cell.addSubview(cell.speakerButton)
+                cell.speakerButton.translatesAutoresizingMaskIntoConstraints = false
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text]-[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.speakerButton, "text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.speakerButton]))
+                cell.speakerButton.tag = indexPath.item
+                //cell.speakerButton.addTarget(self, action: #selector(onSpeakerPressed), for: .touchUpInside)
             }
+            
             /*let size = CGSize(width: view.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
@@ -274,6 +302,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         }
         return cellSize
     }
+    
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 
     /*
      func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -281,10 +313,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
      return 1
      }
     */
+    
     var selectedItemIndex = 0
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedItemIndex = indexPath.item
     }
+
     
     class MessageCell: UICollectionViewCell {
         
@@ -304,17 +339,17 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let imageView = UIImageView ()
             imageView.contentMode = .scaleAspectFill
             imageView.layer.cornerRadius = 20
-            imageView.layer.masksToBounds = true
+            //imageView.layer.masksToBounds = true
             return imageView
         }()
         
         let speakerButton: UIButton = {
             let button = UIButton ()
-            //let imageView = UIImageView()
-            //imageView.image = UIImage(named: "speaker2")
             button.contentMode = .scaleAspectFill
-            button.setImage(UIImage(named: "speaker2"), for: .normal)
+            button.isUserInteractionEnabled = true
+            button.isEnabled = true
             button.addTarget(self, action: #selector(onSpeakerPressed), for: .touchUpInside)
+            button.setImage(UIImage(named: "speaker2"), for: .normal)
             return button
         }()
         
@@ -323,7 +358,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             messageTextView.text = ""
             messageTextView.font = UIFont.systemFont(ofSize: 12)
             messageTextView.layer.cornerRadius = 15
-            messageTextView.layer.masksToBounds = true
+            //messageTextView.layer.masksToBounds = true
+            messageTextView.isEditable = false
             return messageTextView
         }()
         
@@ -332,7 +368,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             timeLabel.text = ""
             timeLabel.font = UIFont.systemFont(ofSize: 9)
             timeLabel.textColor = UIColor.darkGray
-            timeLabel.textAlignment = .right
+            //timeLabel.layer.masksToBounds = true
             return timeLabel
         }()
         
@@ -349,25 +385,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             
             addSubview(profileImageView)
             profileImageView.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": profileImageView]))
-            
             addSubview(messageTextView)
             messageTextView.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": messageTextView]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": messageTextView]))
-            
             addSubview(timeLabel)
             timeLabel.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(40)]-15-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": timeLabel]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[text(10)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": timeLabel]))
-            
-            addSubview(speakerButton)
-            speakerButton.translatesAutoresizingMaskIntoConstraints = false
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[image(10)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": speakerButton]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": speakerButton]))
-    
+
         }
+        
     }
     
     // MARK TextView Delegate
@@ -453,13 +477,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func parseHtmlResponse(response: String) -> String {
-        let encodedData = response.data(using: String.Encoding.utf8)!
+        /*let encodedData = response.data(using: String.Encoding.utf8)!
         do {
             let nsAttributedString = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
             return nsAttributedString.string
         } catch let error as NSError {
             print(error.localizedDescription)
-        }
+        }*/
         return response
     }
     
