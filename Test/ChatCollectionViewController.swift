@@ -14,7 +14,7 @@ import CoreData
 import Speech
 import AVFoundation
 
-let welcomeMessage = "DYDU à votre disposition ! Que puis-je faire pour vous?"
+let welcomeMessage = "DoYouDreamUp à votre disposition ! Que puis-je faire pour vous?"
 
 //let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
 
@@ -26,12 +26,10 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     var textFontSize = 12
     var dateFontSize = 9
    @IBOutlet weak var messagesCollectionView: UICollectionView!
-    //@IBOutlet weak var inputMessage: UITextField!
     @IBOutlet weak var inputMessage: UITextView!
     @IBOutlet weak var microButton: UIButton!
     
-    
-    private let speechRecognizer : SFSpeechRecognizer! = SFSpeechRecognizer(locale: Locale.init(identifier: "fr-FR"))
+    private let speechRecognizer : SFSpeechRecognizer! = SFSpeechRecognizer(locale: Locale.init(identifier: "fr_FR"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
@@ -42,9 +40,14 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microButton.isEnabled = false
+            self.recognitionRequest = nil
+            self.recognitionTask = nil
+            
+            //microButton.isEnabled = false
+            displayMessage(message: "Stop recording")
         } else {
             startRecording()
+            displayMessage(message: "Recording...")
         }
     }
     
@@ -59,7 +62,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func onSpeakerPressed(_ sender: UIButton!){
-        //UIApplication.shared.sendAction(#selector(collectionView(_:didSelectItemAt:)), to: nil, from: self, for: nil)
         //get the selected message and read its text
         let message = messages?[sender.tag]
         read(text: (message?.textMessage!)!)
@@ -95,8 +97,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         
         self.inputMessage.delegate = self
-        //view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-        //self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+        view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+        self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
         // Register cell classes
         self.messagesCollectionView!.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.messagesCollectionView!.delegate = self
@@ -192,22 +194,31 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         recognitionRequest.shouldReportPartialResults = true
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-            
-            var isFinal = false
+            if let result = result {
+                //let str = result.bestTranscription.formattedString
+                self.inputMessage.text = result.bestTranscription.formattedString
+            } else { //if let error = error {
+                self.inputMessage.text = error?.localizedDescription
+                self.displayMessage(message: error.debugDescription)
+                inputNode.removeTap(onBus: 0)
+            }
+           /* var isFinal = false
             if result != nil {
                 self.inputMessage.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
             
-            if error != nil || isFinal {
+            if error != nil {
+                self.displayMessage(message: (error?.localizedDescription)!)
+            }
+            
+            if isFinal {
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                
-                self.microButton.isEnabled = true
-            }
+            }*/
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -242,7 +253,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
                 
                 cell.messageTextView.backgroundColor = UIColor(red: 103/255, green: 173/255, blue: 237/255, alpha: 1.0) //color: blue sky
-                cell.messageTextView.textAlignment = .right
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(200)]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
@@ -255,8 +265,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
                 
-                cell.messageTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-                cell.messageTextView.textAlignment = .left
+                cell.messageTextView.backgroundColor = UIColor.white
+                    //UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text(200)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
@@ -269,7 +279,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text]-[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.speakerButton, "text": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[image(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.speakerButton]))
                 cell.speakerButton.tag = indexPath.item
-                //cell.speakerButton.addTarget(self, action: #selector(onSpeakerPressed), for: .touchUpInside)
             }
             
             /*let size = CGSize(width: view.frame.width, height: 1000)
@@ -290,46 +299,32 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellSize = CGSize(width: view.frame.width, height: 80)
-        if let mess = messages?[indexPath.item] {
+        let cellSize = CGSize(width: view.frame.width, height: 50)
+        /*if let mess = messages?[indexPath.item] {
             let size = CGSize(width: view.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
             let cellSize = CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
             return cellSize
-        }
+        }*/
         return cellSize
-    }
+    }*/
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return false
     }
 
-    /*
-     func numberOfSections(in collectionView: UICollectionView) -> Int {
-     // #warning Incomplete implementation, return the number of sections
-     return 1
-     }
-    */
-    
-    var selectedItemIndex = 0
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItemIndex = indexPath.item
-    }
-
-    
     class MessageCell: UICollectionViewCell {
         
         var message: Message? {
             didSet{
                 messageTextView.text = message?.textMessage as String?
-                
                 if let date = message?.dateMessage {
                     let dateformatter = DateFormatter()
-                    dateformatter.dateFormat = "h:mm a"
+                    dateformatter.locale = Locale.init(identifier: "fr_FR")
+                    dateformatter.dateFormat = "hh:mm"
                     timeLabel.text = dateformatter.string(from: date as Date)
                 }
             }
@@ -339,7 +334,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let imageView = UIImageView ()
             imageView.contentMode = .scaleAspectFill
             imageView.layer.cornerRadius = 20
-            //imageView.layer.masksToBounds = true
+            imageView.layer.masksToBounds = true
             return imageView
         }()
         
@@ -358,7 +353,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             messageTextView.text = ""
             messageTextView.font = UIFont.systemFont(ofSize: 12)
             messageTextView.layer.cornerRadius = 15
-            //messageTextView.layer.masksToBounds = true
             messageTextView.isEditable = false
             return messageTextView
         }()
@@ -368,7 +362,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             timeLabel.text = ""
             timeLabel.font = UIFont.systemFont(ofSize: 9)
             timeLabel.textColor = UIColor.darkGray
-            //timeLabel.layer.masksToBounds = true
             return timeLabel
         }()
         
@@ -382,22 +375,19 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         func setUpViews(){
-            
             addSubview(profileImageView)
             profileImageView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(messageTextView)
             messageTextView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(timeLabel)
             timeLabel.translatesAutoresizingMaskIntoConstraints = false
-
         }
-        
     }
     
     // MARK TextView Delegate
     
     func textViewDidChange(_ textView: UITextView) {
-        let textViewFixedWidth: CGFloat = self.inputMessage.frame.size.width
+        /*let textViewFixedWidth: CGFloat = self.inputMessage.frame.size.width
         let newSize: CGSize = self.inputMessage.sizeThatFits(CGSize(width: textViewFixedWidth, height: CGFloat(MAXFLOAT)))
         var newFrame: CGRect = self.inputMessage.frame
         //var textViewPosition = self.inputMessage.frame.origin.y
@@ -406,7 +396,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             newFrame.size = CGSize(width: fmax(newSize.width, textViewFixedWidth), height: newSize.height)
             newFrame.offsetBy(dx: 0.0, dy: 0)
         }
-        self.inputMessage.frame = newFrame
+        self.inputMessage.frame = newFrame*/
     }
     
     // MARK: DoYouDreamUp stack
@@ -415,13 +405,12 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     func dydu_receivedTalkResponse(withMsg message: String, withExtraParameters extraParameters: [AnyHashable : Any]?) {
         displayMessage(message: message, withPrefix: "Response")
 
-        let response = parseHtmlResponse(response: message);
         //add message to messages ans save data
-        let message = createMessageWithText(text: response, minutesAgo: 0, isSender: false, context: managedObjectContext!)
+        let newMessage = createMessageWithText(text: message.html2String, minutesAgo: 0, isSender: false, context: managedObjectContext!)
         saveData()
         
         //update messages and collectionView
-        messages?.append(message)
+        messages?.append(newMessage)
         let insertionIndexPath = NSIndexPath(item: (messages!.count - 1), section: 0)
         messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
         scrollToBottom()
@@ -476,17 +465,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         messagesCollectionView.scrollToItem(at: lastItemIndex as IndexPath, at: UICollectionViewScrollPosition.top, animated: false)
     }
     
-    func parseHtmlResponse(response: String) -> String {
-        /*let encodedData = response.data(using: String.Encoding.utf8)!
-        do {
-            let nsAttributedString = try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
-            return nsAttributedString.string
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }*/
-        return response
-    }
-    
     func read(text: String){
         let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: text)
@@ -495,4 +473,18 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         synthesizer.speak(utterance)
     }
 
+}
+
+extension String {
+    var html2AttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: Data(utf8), options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            print("error:", error)
+            return nil
+        }
+    }
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
 }
