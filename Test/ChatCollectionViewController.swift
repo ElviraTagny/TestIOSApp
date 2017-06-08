@@ -15,17 +15,15 @@ import Speech
 import AVFoundation
 
 let welcomeMessage = "DoYouDreamUp à votre disposition ! Que puis-je faire pour vous?"
+let textFontSize = 12
+let dateFontSize = 9
 
-//let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-
-class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate, UITextViewDelegate, SFSpeechRecognizerDelegate {
+class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate, UITextViewDelegate, SFSpeechRecognizerDelegate, UICollectionViewDelegateFlowLayout {
     
     let managedObjectContext = delegate?.persistentContainer.viewContext
     private let reuseIdentifier = "cell"
     var messages:[Message]?
-    var textFontSize = 12
-    var dateFontSize = 9
-   @IBOutlet weak var messagesCollectionView: UICollectionView!
+       @IBOutlet weak var messagesCollectionView: UICollectionView!
     @IBOutlet weak var inputMessage: UITextView!
     @IBOutlet weak var microButton: UIButton!
     
@@ -257,7 +255,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .left
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)][message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)]-2-[message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
             }
             else {
@@ -271,7 +269,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .right
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message][time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message]-2-[time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
                 
                 cell.addSubview(cell.speakerButton)
@@ -281,12 +279,16 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.speakerButton.tag = indexPath.item
             }
             
-            /*let size = CGSize(width: view.frame.width, height: 1000)
+            let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: estimatedFrame.height + 20)
-            //cell.sizeThatFits(CGSize(width: view.frame.width, height: estimatedFrame.height + 20))*/
-            cell.sizeToFit()
+            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: 2 * estimatedFrame.height/* + 50*/)
+            cell.messageTextView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
+            
+            cell.layoutIfNeeded()
+            
+           //cell.sizeThatFits(CGSize(width: view.frame.width, height: estimatedFrame.height + 20))*/
+            //cell.sizeToFit()
         }
         return cell
     }
@@ -299,18 +301,19 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         return 0
     }
     
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellSize = CGSize(width: view.frame.width, height: 50)
-        /*if let mess = messages?[indexPath.item] {
-            let size = CGSize(width: view.frame.width, height: 1000)
+        var cellSize = CGSize(width: view.frame.width - 30, height: 100)
+        if let mess = messages?[indexPath.item] {
+            let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            let cellSize = CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
+            cellSize = CGSize(width: view.frame.width - 30, height: estimatedFrame.height + 50)
+            
             return cellSize
-        }*/
+        }
         return cellSize
-    }*/
+    }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return false
@@ -351,7 +354,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         let messageTextView: UITextView = {
             let messageTextView = UITextView()
             messageTextView.text = ""
-            messageTextView.font = UIFont.systemFont(ofSize: 12)
+            messageTextView.font = UIFont.systemFont(ofSize: CGFloat(textFontSize))
             messageTextView.layer.cornerRadius = 15
             messageTextView.isEditable = false
             return messageTextView
@@ -360,7 +363,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         let timeLabel: UILabel = {
             let timeLabel = UILabel()
             timeLabel.text = ""
-            timeLabel.font = UIFont.systemFont(ofSize: 9)
+            timeLabel.font = UIFont.systemFont(ofSize: CGFloat(dateFontSize))
             timeLabel.textColor = UIColor.darkGray
             return timeLabel
         }()
@@ -382,21 +385,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             addSubview(timeLabel)
             timeLabel.translatesAutoresizingMaskIntoConstraints = false
         }
-    }
-    
-    // MARK TextView Delegate
-    
-    func textViewDidChange(_ textView: UITextView) {
-        /*let textViewFixedWidth: CGFloat = self.inputMessage.frame.size.width
-        let newSize: CGSize = self.inputMessage.sizeThatFits(CGSize(width: textViewFixedWidth, height: CGFloat(MAXFLOAT)))
-        var newFrame: CGRect = self.inputMessage.frame
-        //var textViewPosition = self.inputMessage.frame.origin.y
-        let heightDiff = self.inputMessage.frame.height - newSize.height
-        if abs(heightDiff) > 20 {
-            newFrame.size = CGSize(width: fmax(newSize.width, textViewFixedWidth), height: newSize.height)
-            newFrame.offsetBy(dx: 0.0, dy: 0)
-        }
-        self.inputMessage.frame = newFrame*/
     }
     
     // MARK: DoYouDreamUp stack
