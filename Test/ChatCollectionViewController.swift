@@ -255,7 +255,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .left
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)]-2-[message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)][message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
             }
             else {
@@ -269,7 +269,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .right
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message]-2-[time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message][time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
                 
                 cell.addSubview(cell.speakerButton)
@@ -282,13 +282,9 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: 2 * estimatedFrame.height/* + 50*/)
-            cell.messageTextView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
+            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: estimatedFrame.height + 30)
+            cell.messageTextView.contentInset = UIEdgeInsetsMake(20, 5, 20, 5)
             
-            cell.layoutIfNeeded()
-            
-           //cell.sizeThatFits(CGSize(width: view.frame.width, height: estimatedFrame.height + 20))*/
-            //cell.sizeToFit()
         }
         return cell
     }
@@ -308,7 +304,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            cellSize = CGSize(width: view.frame.width - 30, height: estimatedFrame.height + 50)
+            cellSize = CGSize(width: view.frame.width - 30, height: estimatedFrame.height + 30)
             
             return cellSize
         }
