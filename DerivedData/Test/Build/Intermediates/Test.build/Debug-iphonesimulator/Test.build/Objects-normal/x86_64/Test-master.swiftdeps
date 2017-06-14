@@ -1,0 +1,13 @@
+version: "Apple Swift version 3.0.2 (swiftlang-800.0.63 clang-800.0.42.1)"
+options: "9373d1aae18d328f3e236ca45b211e11"
+build_time: [549557252, 723094000]
+inputs:
+  "/Users/natixis-dev/Documents/Elvira/Test/Message.swift": [549458648, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/ChatCollectionViewController.swift": [549556842, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/RedViewController.swift": [548253926, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/ViewController.swift": [548949413, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/BlueViewController.swift": [548253379, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/ChatControllerHelper.swift": [549555427, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/AppDelegate.swift": [549556584, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Test/GreenViewController.swift": [548502479, 0]
+  "/Users/natixis-dev/Documents/Elvira/Test/Message+CoreDataProperties.swift": [549447729, 0]

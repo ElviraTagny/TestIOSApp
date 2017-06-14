@@ -1,0 +1,445 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "RedViewController"
+provides-nominal:
+- "C4Test17RedViewController"
+provides-member:
+- ["C4Test17RedViewController", ""]
+provides-dynamic-lookup:
+- "didReceiveMemoryWarning"
+- "readText"
+- "closeScreen"
+- "inputTextField"
+- "viewDidLoad"
+depends-top-level:
+- "AssignmentPrecedence"
+- !private "AVSpeechUtterance"
+- "UIViewController"
+- !private "AVSpeechSynthesizer"
+- !private "BooleanLiteralType"
+- "RedViewController"
+- "UITextField"
+- !private ">"
+depends-member:
+- ["CSo19AVSpeechSynthesizer", "deinit"]
+- !private ["CSo19AVSpeechSynthesizer", "init"]
+- !private ["CSo19AVSpeechSynthesizer", "speak"]
+- ["CSo17AVSpeechUtterance", "deinit"]
+- !private ["CSo17AVSpeechUtterance", "init"]
+- !private ["CSo17AVSpeechUtterance", "rate"]
+- !private ["Ps9AnyObject", "AVSpeechSynthesizer"]
+- !private ["Ps9AnyObject", "AVSpeechUtterance"]
+- !private ["Ps9AnyObject", "characters"]
+- ["Ps9AnyObject", "closeScreen"]
+- ["Ps9AnyObject", "didReceiveMemoryWarning"]
+- !private ["Ps9AnyObject", "dismiss"]
+- !private ["Ps9AnyObject", "init"]
+- ["Ps9AnyObject", "inputTextField"]
+- !private ["Ps9AnyObject", "rate"]
+- ["Ps9AnyObject", "readText"]
+- !private ["Ps9AnyObject", "speak"]
+- !private ["Ps9AnyObject", "text"]
+- ["Ps9AnyObject", "viewDidLoad"]
+- ["Ps9AnyObject", ""]
+- !private ["Ps23BidirectionalCollection", "IndexDistance"]
+- !private ["Ps23BidirectionalCollection", "count"]
+- !private ["Ps22BidirectionalIndexable", "IndexDistance"]
+- !private ["Ps22BidirectionalIndexable", "count"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- ["Sb", "deinit"]
+- !private ["PSo15CALayerDelegate", "text"]
+- !private ["Ps7CVarArg", "AVSpeechSynthesizer"]
+- !private ["Ps7CVarArg", "AVSpeechUtterance"]
+- !private ["Ps7CVarArg", "characters"]
+- ["Ps7CVarArg", "closeScreen"]
+- ["Ps7CVarArg", "didReceiveMemoryWarning"]
+- !private ["Ps7CVarArg", "dismiss"]
+- !private ["Ps7CVarArg", "init"]
+- ["Ps7CVarArg", "inputTextField"]
+- !private ["Ps7CVarArg", "rate"]
+- ["Ps7CVarArg", "readText"]
+- !private ["Ps7CVarArg", "speak"]
+- !private ["Ps7CVarArg", "text"]
+- ["Ps7CVarArg", "viewDidLoad"]
+- ["Ps7CVarArg", ""]
+- !private ["VSS13CharacterView", "IndexDistance"]
+- !private ["VSS13CharacterView", "count"]
+- !private ["Ps10Collection", "IndexDistance"]
+- !private ["Ps10Collection", "count"]
+- !private ["Ps10Comparable", "characters"]
+- !private ["Ps28CustomDebugStringConvertible", "AVSpeechSynthesizer"]
+- !private ["Ps28CustomDebugStringConvertible", "AVSpeechUtterance"]
+- !private ["Ps28CustomDebugStringConvertible", "characters"]
+- ["Ps28CustomDebugStringConvertible", "closeScreen"]
+- ["Ps28CustomDebugStringConvertible", "didReceiveMemoryWarning"]
+- !private ["Ps28CustomDebugStringConvertible", "dismiss"]
+- !private ["Ps28CustomDebugStringConvertible", "init"]
+- ["Ps28CustomDebugStringConvertible", "inputTextField"]
+- !private ["Ps28CustomDebugStringConvertible", "rate"]
+- ["Ps28CustomDebugStringConvertible", "readText"]
+- !private ["Ps28CustomDebugStringConvertible", "speak"]
+- !private ["Ps28CustomDebugStringConvertible", "text"]
+- ["Ps28CustomDebugStringConvertible", "viewDidLoad"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "characters"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "characters"]
+- !private ["Ps23CustomStringConvertible", "AVSpeechSynthesizer"]
+- !private ["Ps23CustomStringConvertible", "AVSpeechUtterance"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "characters"]
+- ["Ps23CustomStringConvertible", "closeScreen"]
+- ["Ps23CustomStringConvertible", "didReceiveMemoryWarning"]
+- !private ["Ps23CustomStringConvertible", "dismiss"]
+- !private ["Ps23CustomStringConvertible", "init"]
+- ["Ps23CustomStringConvertible", "inputTextField"]
+- !private ["Ps23CustomStringConvertible", "rate"]
+- ["Ps23CustomStringConvertible", "readText"]
+- !private ["Ps23CustomStringConvertible", "speak"]
+- !private ["Ps23CustomStringConvertible", "text"]
+- ["Ps23CustomStringConvertible", "viewDidLoad"]
+- ["Ps23CustomStringConvertible", ""]
+- !private ["Ps9Equatable", "AVSpeechSynthesizer"]
+- !private ["Ps9Equatable", "AVSpeechUtterance"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "characters"]
+- ["Ps9Equatable", "closeScreen"]
+- ["Ps9Equatable", "didReceiveMemoryWarning"]
+- !private ["Ps9Equatable", "dismiss"]
+- !private ["Ps9Equatable", "init"]
+- ["Ps9Equatable", "inputTextField"]
+- !private ["Ps9Equatable", "rate"]
+- ["Ps9Equatable", "readText"]
+- !private ["Ps9Equatable", "speak"]
+- !private ["Ps9Equatable", "text"]
+- ["Ps9Equatable", "viewDidLoad"]
+- ["Ps9Equatable", ""]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "characters"]
+- !private ["Ps32ExpressibleByStringInterpolation", "characters"]
+- !private ["Ps26ExpressibleByStringLiteral", "characters"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "characters"]
+- ["Sf", "deinit"]
+- !private ["Ps8Hashable", "AVSpeechSynthesizer"]
+- !private ["Ps8Hashable", "AVSpeechUtterance"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "characters"]
+- ["Ps8Hashable", "closeScreen"]
+- ["Ps8Hashable", "didReceiveMemoryWarning"]
+- !private ["Ps8Hashable", "dismiss"]
+- !private ["Ps8Hashable", "init"]
+- ["Ps8Hashable", "inputTextField"]
+- !private ["Ps8Hashable", "rate"]
+- ["Ps8Hashable", "readText"]
+- !private ["Ps8Hashable", "speak"]
+- !private ["Ps8Hashable", "text"]
+- ["Ps8Hashable", "viewDidLoad"]
+- ["Ps8Hashable", ""]
+- ["SQ", "deinit"]
+- !private ["Ps9Indexable", "IndexDistance"]
+- !private ["Ps9Indexable", "count"]
+- !private ["Ps13IndexableBase", "IndexDistance"]
+- !private ["Ps13IndexableBase", "count"]
+- ["Si", "deinit"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "characters"]
+- !private ["Ps10MirrorPath", "characters"]
+- ["CSo7NSCoder", "deinit"]
+- !private ["PSo8NSCoding", "AVSpeechSynthesizer"]
+- !private ["PSo8NSCoding", "AVSpeechUtterance"]
+- !private ["PSo8NSCoding", "characters"]
+- ["PSo8NSCoding", "closeScreen"]
+- ["PSo8NSCoding", "didReceiveMemoryWarning"]
+- !private ["PSo8NSCoding", "dismiss"]
+- !private ["PSo8NSCoding", "init"]
+- ["PSo8NSCoding", "inputTextField"]
+- !private ["PSo8NSCoding", "rate"]
+- ["PSo8NSCoding", "readText"]
+- !private ["PSo8NSCoding", "text"]
+- ["PSo8NSCoding", "viewDidLoad"]
+- ["PSo8NSCoding", ""]
+- !private ["PSo9NSCopying", "characters"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "rate"]
+- !private ["PSo26NSExtensionRequestHandling", "AVSpeechSynthesizer"]
+- !private ["PSo26NSExtensionRequestHandling", "AVSpeechUtterance"]
+- ["PSo26NSExtensionRequestHandling", "closeScreen"]
+- ["PSo26NSExtensionRequestHandling", "didReceiveMemoryWarning"]
+- !private ["PSo26NSExtensionRequestHandling", "dismiss"]
+- !private ["PSo26NSExtensionRequestHandling", "init"]
+- ["PSo26NSExtensionRequestHandling", "inputTextField"]
+- ["PSo26NSExtensionRequestHandling", "readText"]
+- ["PSo26NSExtensionRequestHandling", "viewDidLoad"]
+- ["PSo26NSExtensionRequestHandling", ""]
+- !private ["PSo16NSMutableCopying", "characters"]
+- !private ["CSo8NSObject", "AVSpeechSynthesizer"]
+- !private ["CSo8NSObject", "AVSpeechUtterance"]
+- ["CSo8NSObject", "UITextField"]
+- !private ["CSo8NSObject", "characters"]
+- ["CSo8NSObject", "closeScreen"]
+- ["CSo8NSObject", "didReceiveMemoryWarning"]
+- !private ["CSo8NSObject", "dismiss"]
+- ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "inputTextField"]
+- !private ["CSo8NSObject", "rate"]
+- ["CSo8NSObject", "readText"]
+- !private ["CSo8NSObject", "speak"]
+- !private ["CSo8NSObject", "text"]
+- ["CSo8NSObject", "viewDidLoad"]
+- !private ["PSo16NSObjectProtocol", "AVSpeechSynthesizer"]
+- !private ["PSo16NSObjectProtocol", "AVSpeechUtterance"]
+- !private ["PSo16NSObjectProtocol", "characters"]
+- ["PSo16NSObjectProtocol", "closeScreen"]
+- ["PSo16NSObjectProtocol", "didReceiveMemoryWarning"]
+- !private ["PSo16NSObjectProtocol", "dismiss"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- ["PSo16NSObjectProtocol", "inputTextField"]
+- !private ["PSo16NSObjectProtocol", "rate"]
+- ["PSo16NSObjectProtocol", "readText"]
+- !private ["PSo16NSObjectProtocol", "speak"]
+- !private ["PSo16NSObjectProtocol", "text"]
+- ["PSo16NSObjectProtocol", "viewDidLoad"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo14NSSecureCoding", "characters"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "rate"]
+- !private ["CSo8NSString", "characters"]
+- ["Sq", "deinit"]
+- !private ["Ps26RangeReplaceableCollection", "IndexDistance"]
+- !private ["Ps26RangeReplaceableCollection", "count"]
+- !private ["Ps25RangeReplaceableIndexable", "IndexDistance"]
+- !private ["Ps25RangeReplaceableIndexable", "count"]
+- !private ["C4Test17RedViewController", "AVSpeechSynthesizer"]
+- !private ["C4Test17RedViewController", "AVSpeechUtterance"]
+- ["C4Test17RedViewController", "UITextField"]
+- ["C4Test17RedViewController", "closeScreen"]
+- ["C4Test17RedViewController", "deinit"]
+- ["C4Test17RedViewController", "didReceiveMemoryWarning"]
+- !private ["C4Test17RedViewController", "dismiss"]
+- ["C4Test17RedViewController", "init"]
+- ["C4Test17RedViewController", "inputTextField"]
+- ["C4Test17RedViewController", "readText"]
+- ["C4Test17RedViewController", "viewDidLoad"]
+- !private ["Ps8Sequence", "IndexDistance"]
+- !private ["Ps8Sequence", "count"]
+- !private ["SS", "characters"]
+- !private ["Ps16TextOutputStream", "characters"]
+- !private ["Ps20TextOutputStreamable", "characters"]
+- !private ["PSo29UIAccessibilityIdentification", "text"]
+- !private ["PSo12UIAppearance", "text"]
+- !private ["PSo21UIAppearanceContainer", "AVSpeechSynthesizer"]
+- !private ["PSo21UIAppearanceContainer", "AVSpeechUtterance"]
+- ["PSo21UIAppearanceContainer", "closeScreen"]
+- ["PSo21UIAppearanceContainer", "didReceiveMemoryWarning"]
+- !private ["PSo21UIAppearanceContainer", "dismiss"]
+- !private ["PSo21UIAppearanceContainer", "init"]
+- ["PSo21UIAppearanceContainer", "inputTextField"]
+- ["PSo21UIAppearanceContainer", "readText"]
+- !private ["PSo21UIAppearanceContainer", "text"]
+- ["PSo21UIAppearanceContainer", "viewDidLoad"]
+- ["PSo21UIAppearanceContainer", ""]
+- !private ["PSo18UIContentContainer", "AVSpeechSynthesizer"]
+- !private ["PSo18UIContentContainer", "AVSpeechUtterance"]
+- ["PSo18UIContentContainer", "closeScreen"]
+- ["PSo18UIContentContainer", "didReceiveMemoryWarning"]
+- !private ["PSo18UIContentContainer", "dismiss"]
+- !private ["PSo18UIContentContainer", "init"]
+- ["PSo18UIContentContainer", "inputTextField"]
+- ["PSo18UIContentContainer", "readText"]
+- ["PSo18UIContentContainer", "viewDidLoad"]
+- ["PSo18UIContentContainer", ""]
+- !private ["PSo30UIContentSizeCategoryAdjusting", "text"]
+- !private ["CSo9UIControl", "text"]
+- !private ["PSo17UICoordinateSpace", "text"]
+- !private ["PSo13UIDynamicItem", "text"]
+- !private ["PSo18UIFocusEnvironment", "AVSpeechSynthesizer"]
+- !private ["PSo18UIFocusEnvironment", "AVSpeechUtterance"]
+- ["PSo18UIFocusEnvironment", "closeScreen"]
+- ["PSo18UIFocusEnvironment", "didReceiveMemoryWarning"]
+- !private ["PSo18UIFocusEnvironment", "dismiss"]
+- !private ["PSo18UIFocusEnvironment", "init"]
+- ["PSo18UIFocusEnvironment", "inputTextField"]
+- ["PSo18UIFocusEnvironment", "readText"]
+- !private ["PSo18UIFocusEnvironment", "text"]
+- ["PSo18UIFocusEnvironment", "viewDidLoad"]
+- ["PSo18UIFocusEnvironment", ""]
+- !private ["PSo11UIFocusItem", "text"]
+- !private ["PSo10UIKeyInput", "text"]
+- !private ["CSo11UIResponder", "AVSpeechSynthesizer"]
+- !private ["CSo11UIResponder", "AVSpeechUtterance"]
+- ["CSo11UIResponder", "UITextField"]
+- ["CSo11UIResponder", "closeScreen"]
+- ["CSo11UIResponder", "didReceiveMemoryWarning"]
+- !private ["CSo11UIResponder", "dismiss"]
+- ["CSo11UIResponder", "init"]
+- ["CSo11UIResponder", "inputTextField"]
+- ["CSo11UIResponder", "readText"]
+- !private ["CSo11UIResponder", "text"]
+- ["CSo11UIResponder", "viewDidLoad"]
+- !private ["PSo30UIResponderStandardEditActions", "AVSpeechSynthesizer"]
+- !private ["PSo30UIResponderStandardEditActions", "AVSpeechUtterance"]
+- ["PSo30UIResponderStandardEditActions", "closeScreen"]
+- ["PSo30UIResponderStandardEditActions", "didReceiveMemoryWarning"]
+- !private ["PSo30UIResponderStandardEditActions", "dismiss"]
+- !private ["PSo30UIResponderStandardEditActions", "init"]
+- ["PSo30UIResponderStandardEditActions", "inputTextField"]
+- ["PSo30UIResponderStandardEditActions", "readText"]
+- !private ["PSo30UIResponderStandardEditActions", "text"]
+- ["PSo30UIResponderStandardEditActions", "viewDidLoad"]
+- ["PSo30UIResponderStandardEditActions", ""]
+- !private ["PSo16UIStateRestoring", "AVSpeechSynthesizer"]
+- !private ["PSo16UIStateRestoring", "AVSpeechUtterance"]
+- ["PSo16UIStateRestoring", "closeScreen"]
+- ["PSo16UIStateRestoring", "didReceiveMemoryWarning"]
+- !private ["PSo16UIStateRestoring", "dismiss"]
+- !private ["PSo16UIStateRestoring", "init"]
+- ["PSo16UIStateRestoring", "inputTextField"]
+- ["PSo16UIStateRestoring", "readText"]
+- ["PSo16UIStateRestoring", "viewDidLoad"]
+- ["PSo16UIStateRestoring", ""]
+- !private ["CSo11UITextField", "text"]
+- !private ["PSo11UITextInput", "text"]
+- !private ["PSo17UITextInputTraits", "text"]
+- !private ["PSo18UITraitEnvironment", "AVSpeechSynthesizer"]
+- !private ["PSo18UITraitEnvironment", "AVSpeechUtterance"]
+- ["PSo18UITraitEnvironment", "closeScreen"]
+- ["PSo18UITraitEnvironment", "didReceiveMemoryWarning"]
+- !private ["PSo18UITraitEnvironment", "dismiss"]
+- !private ["PSo18UITraitEnvironment", "init"]
+- ["PSo18UITraitEnvironment", "inputTextField"]
+- ["PSo18UITraitEnvironment", "readText"]
+- !private ["PSo18UITraitEnvironment", "text"]
+- ["PSo18UITraitEnvironment", "viewDidLoad"]
+- ["PSo18UITraitEnvironment", ""]
+- !private ["CSo6UIView", "text"]
+- !private ["CSo16UIViewController", "AVSpeechSynthesizer"]
+- !private ["CSo16UIViewController", "AVSpeechUtterance"]
+- ["CSo16UIViewController", "UITextField"]
+- ["CSo16UIViewController", "closeScreen"]
+- ["CSo16UIViewController", "deinit"]
+- ["CSo16UIViewController", "didReceiveMemoryWarning"]
+- !private ["CSo16UIViewController", "dismiss"]
+- ["CSo16UIViewController", "init"]
+- ["CSo16UIViewController", "inputTextField"]
+- ["CSo16UIViewController", "readText"]
+- ["CSo16UIViewController", "viewDidLoad"]
+- ["CSo16UIViewController", ""]
+- !private ["Ps37_DefaultCustomPlaygroundQuickLookable", "text"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "characters"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "characters"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "characters"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "characters"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "characters"]
+- !private ["Ps9_Hashable", "AVSpeechSynthesizer"]
+- !private ["Ps9_Hashable", "AVSpeechUtterance"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "characters"]
+- ["Ps9_Hashable", "closeScreen"]
+- ["Ps9_Hashable", "didReceiveMemoryWarning"]
+- !private ["Ps9_Hashable", "dismiss"]
+- !private ["Ps9_Hashable", "init"]
+- ["Ps9_Hashable", "inputTextField"]
+- !private ["Ps9_Hashable", "rate"]
+- ["Ps9_Hashable", "readText"]
+- !private ["Ps9_Hashable", "speak"]
+- !private ["Ps9_Hashable", "text"]
+- ["Ps9_Hashable", "viewDidLoad"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "characters"]
+depends-nominal:
+- "CSo19AVSpeechSynthesizer"
+- "CSo17AVSpeechUtterance"
+- "Ps9AnyObject"
+- !private "Ps23BidirectionalCollection"
+- !private "Ps22BidirectionalIndexable"
+- "Sb"
+- !private "PSo15CALayerDelegate"
+- "Ps7CVarArg"
+- !private "VSS13CharacterView"
+- !private "Ps10Collection"
+- !private "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps32ExpressibleByStringInterpolation"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- "Sf"
+- "Ps8Hashable"
+- "SQ"
+- !private "Ps9Indexable"
+- !private "Ps13IndexableBase"
+- "Si"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- "CSo7NSCoder"
+- "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- "PSo26NSExtensionRequestHandling"
+- !private "PSo16NSMutableCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- "Sq"
+- !private "Ps26RangeReplaceableCollection"
+- !private "Ps25RangeReplaceableIndexable"
+- "C4Test17RedViewController"
+- !private "Ps8Sequence"
+- !private "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- !private "PSo29UIAccessibilityIdentification"
+- !private "PSo12UIAppearance"
+- "PSo21UIAppearanceContainer"
+- "PSo18UIContentContainer"
+- !private "PSo30UIContentSizeCategoryAdjusting"
+- !private "CSo9UIControl"
+- !private "PSo17UICoordinateSpace"
+- !private "PSo13UIDynamicItem"
+- "PSo18UIFocusEnvironment"
+- !private "PSo11UIFocusItem"
+- !private "PSo10UIKeyInput"
+- "CSo11UIResponder"
+- "PSo30UIResponderStandardEditActions"
+- "PSo16UIStateRestoring"
+- !private "CSo11UITextField"
+- !private "PSo11UITextInput"
+- !private "PSo17UITextInputTraits"
+- "PSo18UITraitEnvironment"
+- !private "CSo6UIView"
+- "CSo16UIViewController"
+- !private "Ps37_DefaultCustomPlaygroundQuickLookable"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- !private "Ps21_ObjectiveCBridgeable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Users/natixis-dev/Documents/Elvira/Test/Test-Bridging-Header.h"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreAudio.swiftmodule"
+interface-hash: "71e53eb5c2a6708aec4340c1ea5e5b39"

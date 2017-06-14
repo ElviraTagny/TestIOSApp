@@ -1,0 +1,6 @@
+framework module DoYouDreamUp {
+  umbrella header "DoYouDreamUp-umbrella.h"
+
+  export *
+  module * { export * }
+}
