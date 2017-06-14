@@ -111,7 +111,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         DoYouDreamUpManager.sharedInstance().configure(with: self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
                                                                    space: nil,
                                                                    language: currentLanguage,
-                                                                   testMode:true,
+                                                                   testMode:false,
                                                                    solutionUsed: Assistant,
                                                                    pureLivechat: false,
                                                                    serverUrl:"wss://jp.createmyassistant.com/servlet/chat",
@@ -252,7 +252,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 
                 cell.messageTextView.backgroundColor = UIColor(red: 103/255, green: 173/255, blue: 237/255, alpha: 1.0) //color: blue sky
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(200)]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .left
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)][message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
@@ -266,7 +266,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
                 cell.messageTextView.backgroundColor = UIColor.white
                     //UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text(200)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[text]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
                 
                 cell.timeLabel.textAlignment = .right
                 cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message][time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
@@ -281,10 +281,20 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-            let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: estimatedFrame.height + 30)
+            var fontSize = 14
+            var height_boost = 20
+            if(mess.textMessage!.characters.count > 30) {
+                fontSize = 15
+                height_boost = 30
+                if(mess.textMessage!.characters.count > 120) {
+                    fontSize = 17
+                    //height_boost = 25
+                }
+            }
+            let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(fontSize))], context: nil)
+            cell.messageTextView.frame = CGRect(x: 0, y: 0, width: view.frame.width - 30, height: estimatedFrame.height + CGFloat(height_boost))
             cell.messageTextView.contentInset = UIEdgeInsetsMake(20, 5, 20, 5)
-            
+            //cell.messageTextView.contentSize = cell.messageTextView.bounds.size
         }
         return cell
     }
@@ -303,8 +313,18 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         if let mess = messages?[indexPath.item] {
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-            let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(textFontSize))], context: nil)
-            cellSize = CGSize(width: view.frame.width - 30, height: estimatedFrame.height + 30)
+            var fontSize = 14
+            var height_boost = 20
+            if(mess.textMessage!.characters.count > 30) {
+                fontSize = 15
+                height_boost = 30
+                if(mess.textMessage!.characters.count > 120) {
+                    fontSize = 17
+                    //height_boost = 25
+                }
+            }
+            let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(fontSize))], context: nil)
+            cellSize = CGSize(width: view.frame.width - 30, height: estimatedFrame.height + CGFloat(height_boost))
             
             return cellSize
         }
@@ -353,6 +373,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             messageTextView.font = UIFont.systemFont(ofSize: CGFloat(textFontSize))
             messageTextView.layer.cornerRadius = 15
             messageTextView.isEditable = false
+            messageTextView.isScrollEnabled = false
             return messageTextView
         }()
         
