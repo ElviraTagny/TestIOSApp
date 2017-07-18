@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B244B47650DA9E7E949B52F644DFE5864BA674E2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "446D0770A2019B9EBFE6492CB1E4C47946A8B3FF" : 9223372036854775807,
+    "B244B47650DA9E7E949B52F644DFE5864BA674E2" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5915059D-2378-4D4A-A5DC-529588BA6631",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "446D0770A2019B9EBFE6492CB1E4C47946A8B3FF" : "ChatBot\/",
+    "B244B47650DA9E7E949B52F644DFE5864BA674E2" : "Test\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Test",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Test.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ElviraNatixis\/ChatBot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "446D0770A2019B9EBFE6492CB1E4C47946A8B3FF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ElviraTagny\/TestIOSApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B244B47650DA9E7E949B52F644DFE5864BA674E2"
+    }
+  ]
+}

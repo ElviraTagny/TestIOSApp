@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A99F42D23A327C55E06429A /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3844EB8C68D2BCBCBADDEA6 /* Pods_Test.framework */; };
 		8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3009DA1EC3486700D7813D /* BlueViewController.swift */; };
-		8F3145DD1EDC660300E23398 /* ChatControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */; };
-		8F3145E21EDC6BCF00E23398 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */; };
+		8F3145DD1EDC660300E23398 /* ChatBotDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145DC1EDC660300E23398 /* ChatBotDatabaseHelper.swift */; };
+		8F3145E21EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145E01EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld */; };
 		8F3145F21EDD633100E23398 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */; };
 		8F4EFE471EC30E8900D0B88B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */; };
 		8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE481EC30E8900D0B88B /* ViewController.swift */; };
@@ -19,6 +19,17 @@
 		8F4EFE5C1EC30E8900D0B88B /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE5B1EC30E8900D0B88B /* TestTests.swift */; };
 		8F4EFE671EC30E8900D0B88B /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE661EC30E8900D0B88B /* TestUITests.swift */; };
 		8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */; };
+		8FA816541F0FC90700A6C613 /* ChatBotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816531F0FC90700A6C613 /* ChatBotManager.swift */; };
+		8FA816571F0FCBEC00A6C613 /* NatBotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816561F0FCBEC00A6C613 /* NatBotService.swift */; };
+		8FA8165A1F0FCC3000A6C613 /* DYDUChatBotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816591F0FCC3000A6C613 /* DYDUChatBotManager.swift */; };
+		8FA8165D1F0FD86E00A6C613 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8165C1F0FD86E00A6C613 /* Attachment.swift */; };
+		8FA8165F1F0FDAC500A6C613 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8165E1F0FDAC500A6C613 /* Card.swift */; };
+		8FA816611F0FDB6F00A6C613 /* CardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816601F0FDB6F00A6C613 /* CardAction.swift */; };
+		8FA816631F0FDF6500A6C613 /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816621F0FDF6500A6C613 /* CarouselItem.swift */; };
+		8FA816661F13AE8300A6C613 /* DisplayMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816651F13AE8300A6C613 /* DisplayMessageDelegate.swift */; };
+		8FA816681F14D7A000A6C613 /* ChatBotManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816671F14D7A000A6C613 /* ChatBotManagerDelegate.swift */; };
+		8FB8B9731F166B91002DEA8C /* ChatBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB8B9721F166B91002DEA8C /* ChatBot.framework */; };
+		8FB8B9751F166BAA002DEA8C /* DoYouDreamUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB8B9741F166BAA002DEA8C /* DoYouDreamUp.framework */; };
 		8FB96FD91ED5E0C20099DC37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FB96FD71ED5E0C20099DC37 /* Main.storyboard */; };
 		8FDBAEF01EDF10FE00BFD635 /* Test-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 8F3145F31EDDB93400E23398 /* Test-Bridging-Header.h */; };
 		8FDBAEF21EDF25E900BFD635 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBAEF11EDF25E900BFD635 /* Message.swift */; };
@@ -46,9 +57,9 @@
 /* Begin PBXFileReference section */
 		590F5FF63A4540BE239B59B2 /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 		8F3009DA1EC3486700D7813D /* BlueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
-		8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatControllerHelper.swift; sourceTree = "<group>"; };
-		8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
-		8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8F3145DC1EDC660300E23398 /* ChatBotDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBotDatabaseHelper.swift; sourceTree = "<group>"; };
+		8F3145E11EDC6BCF00E23398 /* TestModelleuh.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModelleuh.xcdatamodel; sourceTree = "<group>"; };
+		8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "../Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8F3145F31EDDB93400E23398 /* Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F4EFE431EC30E8900D0B88B /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,8 +74,19 @@
 		8F4EFE661EC30E8900D0B88B /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		8F4EFE681EC30E8900D0B88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
+		8FA816531F0FC90700A6C613 /* ChatBotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBotManager.swift; sourceTree = "<group>"; };
+		8FA816561F0FCBEC00A6C613 /* NatBotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NatBotService.swift; sourceTree = "<group>"; };
+		8FA816591F0FCC3000A6C613 /* DYDUChatBotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDUChatBotManager.swift; sourceTree = "<group>"; };
+		8FA8165C1F0FD86E00A6C613 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		8FA8165E1F0FDAC500A6C613 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8FA816601F0FDB6F00A6C613 /* CardAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAction.swift; sourceTree = "<group>"; };
+		8FA816621F0FDF6500A6C613 /* CarouselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
+		8FA816651F13AE8300A6C613 /* DisplayMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayMessageDelegate.swift; sourceTree = "<group>"; };
+		8FA816671F14D7A000A6C613 /* ChatBotManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBotManagerDelegate.swift; sourceTree = "<group>"; };
+		8FB8B9721F166B91002DEA8C /* ChatBot.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChatBot.framework; path = "../../../Library/Developer/Xcode/DerivedData/Test-bjuyybgavilexuffjejhswbdilbi/Build/Products/Debug-iphonesimulator/ChatBot/ChatBot.framework"; sourceTree = "<group>"; };
+		8FB8B9741F166BAA002DEA8C /* DoYouDreamUp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DoYouDreamUp.framework; path = "../../../Library/Developer/Xcode/DerivedData/Test-bjuyybgavilexuffjejhswbdilbi/Build/Products/Debug-iphonesimulator/DoYouDreamUp/DoYouDreamUp.framework"; sourceTree = "<group>"; };
 		8FB96FD81ED5E0C20099DC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8FDBAEF11EDF25E900BFD635 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8FDBAEF11EDF25E900BFD635 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../Message.swift; sourceTree = "<group>"; };
 		8FDBE9B81ECB27E800CD272C /* RedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
 		8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
 		969B5A2CED823B5C76F76AD5 /* Pods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Test/Pods-Test.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FB8B9751F166BAA002DEA8C /* DoYouDreamUp.framework in Frameworks */,
+				8FB8B9731F166B91002DEA8C /* ChatBot.framework in Frameworks */,
 				3A99F42D23A327C55E06429A /* Pods_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,10 +133,7 @@
 		8F4EFE3A1EC30E8900D0B88B = {
 			isa = PBXGroup;
 			children = (
-				8FDBAEF11EDF25E900BFD635 /* Message.swift */,
 				8F3145F31EDDB93400E23398 /* Test-Bridging-Header.h */,
-				8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */,
-				8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */,
 				8F4EFE451EC30E8900D0B88B /* Test */,
 				8F4EFE5A1EC30E8900D0B88B /* TestTests */,
 				8F4EFE651EC30E8900D0B88B /* TestUITests */,
@@ -135,6 +156,10 @@
 		8F4EFE451EC30E8900D0B88B /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				8FA816641F0FE46500A6C613 /* Components */,
+				8FA816581F0FCC1300A6C613 /* DYDUChatBotService */,
+				8FA816551F0FCBCD00A6C613 /* NatBotServices */,
+				8FA816521F0FC8D200A6C613 /* ChatBotCore */,
 				8FB96FD71ED5E0C20099DC37 /* Main.storyboard */,
 				8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */,
 				8F4EFE481EC30E8900D0B88B /* ViewController.swift */,
@@ -145,7 +170,6 @@
 				8FDBE9B81ECB27E800CD272C /* RedViewController.swift */,
 				8FDBE9E41ECEE7AF00CD272C /* GreenViewController.swift */,
 				8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */,
-				8F3145DC1EDC660300E23398 /* ChatControllerHelper.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -168,9 +192,52 @@
 			path = TestUITests;
 			sourceTree = "<group>";
 		};
+		8FA816521F0FC8D200A6C613 /* ChatBotCore */ = {
+			isa = PBXGroup;
+			children = (
+				8F3145E01EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld */,
+				8F3145DC1EDC660300E23398 /* ChatBotDatabaseHelper.swift */,
+				8FDBAEF11EDF25E900BFD635 /* Message.swift */,
+				8F3145F01EDD633100E23398 /* Message+CoreDataProperties.swift */,
+				8FA816531F0FC90700A6C613 /* ChatBotManager.swift */,
+				8FA816651F13AE8300A6C613 /* DisplayMessageDelegate.swift */,
+				8FA816671F14D7A000A6C613 /* ChatBotManagerDelegate.swift */,
+			);
+			name = ChatBotCore;
+			sourceTree = "<group>";
+		};
+		8FA816551F0FCBCD00A6C613 /* NatBotServices */ = {
+			isa = PBXGroup;
+			children = (
+				8FA816561F0FCBEC00A6C613 /* NatBotService.swift */,
+				8FA8165C1F0FD86E00A6C613 /* Attachment.swift */,
+				8FA8165E1F0FDAC500A6C613 /* Card.swift */,
+				8FA816601F0FDB6F00A6C613 /* CardAction.swift */,
+				8FA816621F0FDF6500A6C613 /* CarouselItem.swift */,
+			);
+			name = NatBotServices;
+			sourceTree = "<group>";
+		};
+		8FA816581F0FCC1300A6C613 /* DYDUChatBotService */ = {
+			isa = PBXGroup;
+			children = (
+				8FA816591F0FCC3000A6C613 /* DYDUChatBotManager.swift */,
+			);
+			name = DYDUChatBotService;
+			sourceTree = "<group>";
+		};
+		8FA816641F0FE46500A6C613 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		D95193018A1F2ABA3E2049C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FB8B9741F166BAA002DEA8C /* DoYouDreamUp.framework */,
+				8FB8B9721F166B91002DEA8C /* ChatBot.framework */,
 				A3844EB8C68D2BCBCBADDEA6 /* Pods_Test.framework */,
 			);
 			name = Frameworks;
@@ -362,16 +429,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FDBAEF01EDF10FE00BFD635 /* Test-Bridging-Header.h in Sources */,
+				8FA816541F0FC90700A6C613 /* ChatBotManager.swift in Sources */,
+				8FA816661F13AE8300A6C613 /* DisplayMessageDelegate.swift in Sources */,
+				8FA816631F0FDF6500A6C613 /* CarouselItem.swift in Sources */,
+				8FA816611F0FDB6F00A6C613 /* CardAction.swift in Sources */,
+				8FA816571F0FCBEC00A6C613 /* NatBotService.swift in Sources */,
 				8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */,
+				8FA8165D1F0FD86E00A6C613 /* Attachment.swift in Sources */,
 				8FDBAEF21EDF25E900BFD635 /* Message.swift in Sources */,
 				8FDBE9B91ECB27E800CD272C /* RedViewController.swift in Sources */,
 				8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */,
 				8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */,
-				8F3145DD1EDC660300E23398 /* ChatControllerHelper.swift in Sources */,
+				8FA816681F14D7A000A6C613 /* ChatBotManagerDelegate.swift in Sources */,
+				8F3145DD1EDC660300E23398 /* ChatBotDatabaseHelper.swift in Sources */,
 				8F4EFE471EC30E8900D0B88B /* AppDelegate.swift in Sources */,
 				8FDBE9E51ECEE7AF00CD272C /* GreenViewController.swift in Sources */,
 				8F3145F21EDD633100E23398 /* Message+CoreDataProperties.swift in Sources */,
-				8F3145E21EDC6BCF00E23398 /* TestModel.xcdatamodeld in Sources */,
+				8F3145E21EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld in Sources */,
+				8FA8165A1F0FCC3000A6C613 /* DYDUChatBotManager.swift in Sources */,
+				8FA8165F1F0FDAC500A6C613 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,14 +725,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8F3145E01EDC6BCF00E23398 /* TestModel.xcdatamodeld */ = {
+		8F3145E01EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */,
+				8F3145E11EDC6BCF00E23398 /* TestModelleuh.xcdatamodel */,
 			);
-			currentVersion = 8F3145E11EDC6BCF00E23398 /* TestModel.xcdatamodel */;
-			path = TestModel.xcdatamodeld;
-			sourceTree = "<group>";
+			currentVersion = 8F3145E11EDC6BCF00E23398 /* TestModelleuh.xcdatamodel */;
+			path = TestModelleuh.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */

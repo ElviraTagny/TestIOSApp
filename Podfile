@@ -11,6 +11,7 @@ target 'Test' do
 
   pod 'Kanna', '~> 2.1.0'
   pod 'SwiftSoup'
+  pod 'ChatBot', :path => '/Users/natixis-dev/Documents/Elvira/ChatBot'
 
   #target 'TestTests' do
     #inherit! :search_paths

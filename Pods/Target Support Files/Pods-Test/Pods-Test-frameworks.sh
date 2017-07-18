@@ -90,6 +90,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Base64/Base64.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ChatBot/ChatBot.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DoYouDreamUp/DoYouDreamUp.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Kanna/Kanna.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SocketRocket/SocketRocket.framework"
@@ -97,6 +98,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Base64/Base64.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ChatBot/ChatBot.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DoYouDreamUp/DoYouDreamUp.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Kanna/Kanna.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SocketRocket/SocketRocket.framework"

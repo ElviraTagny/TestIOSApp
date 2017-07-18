@@ -1,0 +1,28 @@
+{
+  "name": "ChatBot",
+  "version": "0.1.0",
+  "summary": "ChatBot lib to create great Chatbot apps. Designed by Natixis.",
+  "description": "The aim of this library in to make a socle to the development of future ChatBot apps. Designed by Natixis.",
+  "homepage": "https://github.com/ElviraNatixis/ChatBot",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ElviraNatixis": "elvira.tagnytchame-ext@natixis.com"
+  },
+  "source": {
+    "git": "https://github.com/ElviraNatixis/ChatBot.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "ChatBot/Classes/*",
+  "resources": "ChatBot/Classes/*.xcdatamodeld",
+  "frameworks": [
+    "UIKit",
+    "CoreData",
+    "Foundation"
+  ]
+}

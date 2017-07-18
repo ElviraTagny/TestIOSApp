@@ -6,13 +6,13 @@
 //  Copyright © 2017 Natixis. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 import CoreData
 
 let delegate = UIApplication.shared.delegate as? AppDelegate
+let welcomeMessage = "Bonjour ! Que puis-je faire pour vous?"
 
-
-extension ChatCollectionViewController {
+extension ChatBotManager {
     
     func initData(){
         //clearData()
@@ -72,4 +72,4 @@ extension ChatCollectionViewController {
         message.isSender = NSNumber(value: isSender)
         return message
     }
-}
+}*/

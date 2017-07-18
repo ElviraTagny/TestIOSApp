@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import ChatBot
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+//@UIApplicationMain
+class AppDelegate: ChatBotAppDelegate {
 
-    var window: UIWindow?
+    /*var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -41,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+    }*/
 
     // MARK: - Core Data stack
     
@@ -74,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    override func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

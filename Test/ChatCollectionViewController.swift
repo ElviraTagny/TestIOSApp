@@ -7,23 +7,23 @@
 //
 
 import UIKit
-import DoYouDreamUp
-import CoreData
+//import CoreData
 //import Kanna
 //import SwiftSoup
+import ChatBot
 import Speech
 import AVFoundation
 
-let welcomeMessage = "DoYouDreamUp à votre disposition ! Que puis-je faire pour vous?"
 let textFontSize = 12
 let dateFontSize = 9
 
-class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, DoYouDreamUpDelegate, UITextViewDelegate, SFSpeechRecognizerDelegate, UICollectionViewDelegateFlowLayout {
+class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate, SFSpeechRecognizerDelegate, UICollectionViewDelegateFlowLayout, DisplayMessageDelegate {
     
-    let managedObjectContext = delegate?.persistentContainer.viewContext
+    let chatBotManager = DYDUChatBotManager()
     private let reuseIdentifier = "cell"
-    var messages:[Message]?
-       @IBOutlet weak var messagesCollectionView: UICollectionView!
+    var messages : [Message]?
+    
+    @IBOutlet weak var messagesCollectionView: UICollectionView!
     @IBOutlet weak var inputMessage: UITextView!
     @IBOutlet weak var microButton: UIButton!
     
@@ -31,7 +31,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    
     
     @IBAction func onMicroPressed(_ sender: Any) {
         displayMessage(message: "Micro pressed")
@@ -51,11 +50,12 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBAction func closeScreen(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        DoYouDreamUpManager.sharedInstance().disconnect();
+        chatBotManager.closeService()
     }
     
     @IBAction func clearAllMessages(_ sender: Any) {
-        clearData()
+        chatBotManager.clearData()
+        messages = chatBotManager.getMessagesList()
         messagesCollectionView?.reloadData()
     }
     
@@ -67,25 +67,17 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBAction func onSendButtonPressed(_ sender: Any) {
         if inputMessage.text != "" {
-            //add message to messages and save data
-            let message = createMessageWithText(text: inputMessage.text!, minutesAgo: 0, isSender: true, context: managedObjectContext!)
-            saveData()
-        
-            //update messages and collectionView
-            if(messages == nil) {
-                messages = []
+            //Talk to Bot and save message to database
+            chatBotManager.sendMessage(sData: inputMessage.text!)
+            messages = chatBotManager.getMessagesList()
+            for mess in messages! {
+                print("DEBUG - send - ", mess.textMessage! + "//")
             }
-            messages?.append(message)
-            let index = messages!.count > 0 ? (messages!.count - 1) : 0
+            let index = (messages?.count)! > 0 ? ((messages?.count)! - 1) : 0
             let insertionIndexPath = NSIndexPath(item: index, section: 0)
             messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
             scrollToBottom()
             
-            //Talk to Bot
-            //DoYouDreamUpManager.sharedInstance().talk(inputMessage.text)
-            if (DoYouDreamUpManager.sharedInstance().talk(inputMessage.text!, extraParameters: ["action":"clickChangeUser"]) ) {
-                displayMessage(message: "Talking action sent: \(inputMessage.text!)")
-            }
             //clear input field
             inputMessage.text = ""
         }
@@ -97,33 +89,25 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         self.inputMessage.delegate = self
         view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
         self.messagesCollectionView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
+        
+        /*********** Chatbot init block ******************/
+        chatBotManager.initService(pDisplayMessageDelegate: self)
+        messages = chatBotManager.getMessagesList()
+        for mess in messages! {
+            print("DEBUG - init - ", mess.textMessage! + "//")
+        }
+        //var paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
+        //print(paths.objectAtIndex[0])
+        let mdelegate = UIApplication.shared.delegate as? AppDelegate
+        print("DB", mdelegate?.persistentContainer.persistentStoreCoordinator.persistentStores.first?.url)
+        /***********************************************/
+        
         // Register cell classes
         self.messagesCollectionView!.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.messagesCollectionView!.delegate = self
         self.messagesCollectionView!.dataSource = self
         self.messagesCollectionView!.alwaysBounceVertical = true
-        initData()
         scrollToBottom()
-        
-        /**********$ DYDU init block ******************/
-        let currentLanguage = "fr"
-        //NSLog("currentLanguage=\(currentLanguage)")
-        DoYouDreamUpManager.sharedInstance().configure(with: self, botId: "972f1264-6d85-4a58-b5ac-da31481dda63",
-                                                                   space: nil,
-                                                                   language: currentLanguage,
-                                                                   testMode:false,
-                                                                   solutionUsed: Assistant,
-                                                                   pureLivechat: false,
-                                                                   serverUrl:"wss://jp.createmyassistant.com/servlet/chat",
-                                                                   backupServerUrl:nil)
-
-        if (DoYouDreamUpManager.sharedInstance().connect()) {
-            displayMessage(message: "Connecting…")
-        }
-        //Define a specific user if you want to, this can be done anytime
-        DoYouDreamUpManager.setUserID("USERID_123")
-        DoYouDreamUpManager.displayLog(true)
-        /***********************************************/
         
         /************ Speech recognition init block *******************/
         speechRecognizer.delegate = self
@@ -404,58 +388,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
     
-    // MARK: DoYouDreamUp stack
-    
-    //Implement the callback delegate
-    func dydu_receivedTalkResponse(withMsg message: String, withExtraParameters extraParameters: [AnyHashable : Any]?) {
-        displayMessage(message: message, withPrefix: "Response")
-
-        //add message to messages ans save data
-        let newMessage = createMessageWithText(text: message.html2String, minutesAgo: 0, isSender: false, context: managedObjectContext!)
-        saveData()
-        
-        //update messages and collectionView
-        messages?.append(newMessage)
-        let insertionIndexPath = NSIndexPath(item: (messages!.count - 1), section: 0)
-        messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
-        scrollToBottom()
-    }
-
-    ///Callback to notify that the connection failed with the given error
-    ///@param error the given error
-    public func dydu_connexionDidFailWithError(_ error: Error) {
-        displayMessage(message: "Connection failed with error \(error.localizedDescription)")
-    }
-    
-    ///Callback to notify that the connection closed correctly
-    func dydu_connexionDidClosed() {
-        displayMessage(message: "Connection closed correctly")
-    }
-    
-    ///Callback to notify that the connection opened
-    ///@param contextId the contextId used in the current connexion, could be nil at this step for the first login
-    /// use the dydu_contextIdChanged to get information about changes
-    public func dydu_connexionDidOpen(withContextId contextId: String?) {
-        displayMessage(message: "Connection opened correctly")
-    }
-    
-    //Check the history of interactions
-    func dydu_history(_ interactions: [Any]?, forContextId contextId: String?) {
-        displayMessage(message: "received #=\(interactions?.count) history entries for contextId=\(contextId)", withPrefix: "History")
-        if ((interactions?.count)! > 0) {
-            let item = interactions![0] as AnyObject
-            displayMessage(message: "Hola"/*"First item=\(item["text"]) from=\(item["from"]) type=\(item["type"]) user=\(item["user"])"*/, withPrefix: "Response=")
-        }
-    }
-    
-    func dydu_receivedNotification(_ message: String, withCode code: String) {
-        displayMessage(message: "received notification #=\(message) withCode: \(code)", withPrefix: "Notification")
-    }
-    
-    func dydu_contextIdChanged(_ contextId: String) {
-        displayMessage(message: "ContextId changed")
-    }
-    
     // MARK: Utils
     
     func displayMessage(message:String, withPrefix prefix:String) {
@@ -466,7 +398,7 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func scrollToBottom(){
-        let lastItemIndex = NSIndexPath(item: (messages!.count - 1), section: 0)
+        let lastItemIndex = NSIndexPath(item: ((messages?.count)! - 1), section: 0)
         messagesCollectionView.scrollToItem(at: lastItemIndex as IndexPath, at: UICollectionViewScrollPosition.top, animated: false)
     }
     
@@ -477,19 +409,21 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         
         synthesizer.speak(utterance)
     }
-
-}
-
-extension String {
-    var html2AttributedString: NSAttributedString? {
-        do {
-            return try NSAttributedString(data: Data(utf8), options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch {
-            print("error:", error)
-            return nil
+    
+    func onDisplayMessage(message: Message) {
+        //update messages and collectionView
+        //messages?.append(message)
+        messages = chatBotManager.getMessagesList()
+        for mess in messages! {
+            print("DEBUG - response - ", mess.textMessage! + "//")
         }
+        let insertionIndexPath = NSIndexPath(item: ((messages?.count)! - 1), section: 0)
+        messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
+        scrollToBottom()
     }
-    var html2String: String {
-        return html2AttributedString?.string ?? ""
+    
+    func onDisplayLogMessage(log: String) {
+        displayMessage(message: log)
     }
+
 }

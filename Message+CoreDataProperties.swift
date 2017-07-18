@@ -6,7 +6,7 @@
 //  Copyright © 2017 Natixis. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 import CoreData
 
 
@@ -20,4 +20,4 @@ extension Message {
     @NSManaged public var textMessage: String?
     @NSManaged public var isSender: NSNumber?
 
-}
+}*/

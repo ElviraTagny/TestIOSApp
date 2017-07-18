@@ -6,10 +6,10 @@
 //  Copyright © 2017 Natixis. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 import CoreData
-
+import ChatBot
 
 public class Message: NSManagedObject {
 
-}
+}*/

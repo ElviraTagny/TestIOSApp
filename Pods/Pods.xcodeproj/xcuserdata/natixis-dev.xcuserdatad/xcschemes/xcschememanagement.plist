@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChatBot.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DoYouDreamUp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,6 +47,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>26D4EC8CD09CB44047DB4B81007F8988</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4D10E4FF5A483B852B47CCA0B994E340</key>
 		<dict>
 			<key>primary</key>
@@ -57,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEE9431DE00BD77BD6F7ED7D3F2E226E</key>
+		<key>99B2C504A803C20CC007E456D50A8400</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D58EA319F4C59D2F384FF3B8F68BCD55</key>
+		<key>AA9DB504FAF1954383965DEDF08B9209</key>
 		<dict>
 			<key>primary</key>
 			<true/>
