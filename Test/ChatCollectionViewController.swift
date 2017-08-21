@@ -70,9 +70,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             //Talk to Bot and save message to database
             chatBotManager.sendMessage(sData: inputMessage.text!)
             messages = chatBotManager.getMessagesList()
-            for mess in messages! {
-                print("DEBUG - send - ", mess.textMessage! + "//")
-            }
             let index = (messages?.count)! > 0 ? ((messages?.count)! - 1) : 0
             let insertionIndexPath = NSIndexPath(item: index, section: 0)
             messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
@@ -93,13 +90,6 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         /*********** Chatbot init block ******************/
         chatBotManager.initService(pDisplayMessageDelegate: self)
         messages = chatBotManager.getMessagesList()
-        for mess in messages! {
-            print("DEBUG - init - ", mess.textMessage! + "//")
-        }
-        //var paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)
-        //print(paths.objectAtIndex[0])
-        let mdelegate = UIApplication.shared.delegate as? AppDelegate
-        print("DB", mdelegate?.persistentContainer.persistentStoreCoordinator.persistentStores.first?.url)
         /***********************************************/
         
         // Register cell classes
@@ -230,31 +220,31 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
         if let mess = messages?[indexPath.item] {
             cell.message = mess
             if mess.isSender!.boolValue {
+                cell.timeLabel.textAlignment = .center
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[time(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[time(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                
                 cell.profileImageView.image = UIImage(named: "user_icon")
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[image(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[image(35)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[image(35)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
                 
                 cell.messageTextView.backgroundColor = UIColor(red: 103/255, green: 173/255, blue: 237/255, alpha: 1.0) //color: blue sky
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(200)]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                
-                cell.timeLabel.textAlignment = .left
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[time(45)][message]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[text(200)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[timelabel][text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView, "timelabel": cell.timeLabel]))
             }
             else {
+                cell.timeLabel.textAlignment = .center
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[time(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[time(10)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                
                 cell.profileImageView.image = UIImage(named: "dydu")
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(45)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(35)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[image(35)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["image": cell.profileImageView]))
                 
                 cell.messageTextView.backgroundColor = UIColor.white
                     //UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0) //color: very light gray
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[text(200)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
-                
-                cell.timeLabel.textAlignment = .right
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[message][time(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel, "message": cell.messageTextView]))
-                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[time(10)]-3-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["time": cell.timeLabel]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[text(200)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView]))
+                cell.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[timelabel][text]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["text": cell.messageTextView, "timelabel": cell.timeLabel]))
                 
                 cell.addSubview(cell.speakerButton)
                 cell.speakerButton.translatesAutoresizingMaskIntoConstraints = false
@@ -266,13 +256,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             var fontSize = 14
-            var height_boost = 20
+            var height_boost = 30
             if(mess.textMessage!.characters.count > 30) {
                 fontSize = 15
-                height_boost = 30
+                height_boost = 40
                 if(mess.textMessage!.characters.count > 120) {
                     fontSize = 17
-                    //height_boost = 25
+                    height_boost = 45
                 }
             }
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(fontSize))], context: nil)
@@ -298,13 +288,13 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
             let size = CGSize(width: view.frame.width - 30, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             var fontSize = 14
-            var height_boost = 20
+            var height_boost = 30
             if(mess.textMessage!.characters.count > 30) {
                 fontSize = 15
-                height_boost = 30
+                height_boost = 40
                 if(mess.textMessage!.characters.count > 120) {
                     fontSize = 17
-                    //height_boost = 25
+                    height_boost = 45
                 }
             }
             let estimatedFrame = NSString(string: mess.textMessage!).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: CGFloat(fontSize))], context: nil)
@@ -411,12 +401,8 @@ class ChatCollectionViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func onDisplayMessage(message: Message) {
-        //update messages and collectionView
-        //messages?.append(message)
+        //update messages in collectionView
         messages = chatBotManager.getMessagesList()
-        for mess in messages! {
-            print("DEBUG - response - ", mess.textMessage! + "//")
-        }
         let insertionIndexPath = NSIndexPath(item: ((messages?.count)! - 1), section: 0)
         messagesCollectionView?.insertItems(at: [insertionIndexPath as IndexPath])
         scrollToBottom()

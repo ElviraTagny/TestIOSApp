@@ -19,13 +19,10 @@
 		8F4EFE5C1EC30E8900D0B88B /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE5B1EC30E8900D0B88B /* TestTests.swift */; };
 		8F4EFE671EC30E8900D0B88B /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4EFE661EC30E8900D0B88B /* TestUITests.swift */; };
 		8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */; };
+		8F7932E91F1E527B006D5DF5 /* BotBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7932E81F1E527B006D5DF5 /* BotBubble.swift */; };
+		8F7932EB1F1E52C8006D5DF5 /* SenderBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7932EA1F1E52C8006D5DF5 /* SenderBubble.swift */; };
 		8FA816541F0FC90700A6C613 /* ChatBotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816531F0FC90700A6C613 /* ChatBotManager.swift */; };
-		8FA816571F0FCBEC00A6C613 /* NatBotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816561F0FCBEC00A6C613 /* NatBotService.swift */; };
 		8FA8165A1F0FCC3000A6C613 /* DYDUChatBotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816591F0FCC3000A6C613 /* DYDUChatBotManager.swift */; };
-		8FA8165D1F0FD86E00A6C613 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8165C1F0FD86E00A6C613 /* Attachment.swift */; };
-		8FA8165F1F0FDAC500A6C613 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8165E1F0FDAC500A6C613 /* Card.swift */; };
-		8FA816611F0FDB6F00A6C613 /* CardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816601F0FDB6F00A6C613 /* CardAction.swift */; };
-		8FA816631F0FDF6500A6C613 /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816621F0FDF6500A6C613 /* CarouselItem.swift */; };
 		8FA816661F13AE8300A6C613 /* DisplayMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816651F13AE8300A6C613 /* DisplayMessageDelegate.swift */; };
 		8FA816681F14D7A000A6C613 /* ChatBotManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA816671F14D7A000A6C613 /* ChatBotManagerDelegate.swift */; };
 		8FB8B9731F166B91002DEA8C /* ChatBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB8B9721F166B91002DEA8C /* ChatBot.framework */; };
@@ -74,13 +71,10 @@
 		8F4EFE661EC30E8900D0B88B /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		8F4EFE681EC30E8900D0B88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F7476361ED47D4A0050842D /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
+		8F7932E81F1E527B006D5DF5 /* BotBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotBubble.swift; sourceTree = "<group>"; };
+		8F7932EA1F1E52C8006D5DF5 /* SenderBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderBubble.swift; sourceTree = "<group>"; };
 		8FA816531F0FC90700A6C613 /* ChatBotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBotManager.swift; sourceTree = "<group>"; };
-		8FA816561F0FCBEC00A6C613 /* NatBotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NatBotService.swift; sourceTree = "<group>"; };
 		8FA816591F0FCC3000A6C613 /* DYDUChatBotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYDUChatBotManager.swift; sourceTree = "<group>"; };
-		8FA8165C1F0FD86E00A6C613 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		8FA8165E1F0FDAC500A6C613 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		8FA816601F0FDB6F00A6C613 /* CardAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAction.swift; sourceTree = "<group>"; };
-		8FA816621F0FDF6500A6C613 /* CarouselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
 		8FA816651F13AE8300A6C613 /* DisplayMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayMessageDelegate.swift; sourceTree = "<group>"; };
 		8FA816671F14D7A000A6C613 /* ChatBotManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBotManagerDelegate.swift; sourceTree = "<group>"; };
 		8FB8B9721F166B91002DEA8C /* ChatBot.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChatBot.framework; path = "../../../Library/Developer/Xcode/DerivedData/Test-bjuyybgavilexuffjejhswbdilbi/Build/Products/Debug-iphonesimulator/ChatBot/ChatBot.framework"; sourceTree = "<group>"; };
@@ -158,7 +152,6 @@
 			children = (
 				8FA816641F0FE46500A6C613 /* Components */,
 				8FA816581F0FCC1300A6C613 /* DYDUChatBotService */,
-				8FA816551F0FCBCD00A6C613 /* NatBotServices */,
 				8FA816521F0FC8D200A6C613 /* ChatBotCore */,
 				8FB96FD71ED5E0C20099DC37 /* Main.storyboard */,
 				8F4EFE461EC30E8900D0B88B /* AppDelegate.swift */,
@@ -206,18 +199,6 @@
 			name = ChatBotCore;
 			sourceTree = "<group>";
 		};
-		8FA816551F0FCBCD00A6C613 /* NatBotServices */ = {
-			isa = PBXGroup;
-			children = (
-				8FA816561F0FCBEC00A6C613 /* NatBotService.swift */,
-				8FA8165C1F0FD86E00A6C613 /* Attachment.swift */,
-				8FA8165E1F0FDAC500A6C613 /* Card.swift */,
-				8FA816601F0FDB6F00A6C613 /* CardAction.swift */,
-				8FA816621F0FDF6500A6C613 /* CarouselItem.swift */,
-			);
-			name = NatBotServices;
-			sourceTree = "<group>";
-		};
 		8FA816581F0FCC1300A6C613 /* DYDUChatBotService */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +210,8 @@
 		8FA816641F0FE46500A6C613 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8F7932E81F1E527B006D5DF5 /* BotBubble.swift */,
+				8F7932EA1F1E52C8006D5DF5 /* SenderBubble.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -431,12 +414,10 @@
 				8FDBAEF01EDF10FE00BFD635 /* Test-Bridging-Header.h in Sources */,
 				8FA816541F0FC90700A6C613 /* ChatBotManager.swift in Sources */,
 				8FA816661F13AE8300A6C613 /* DisplayMessageDelegate.swift in Sources */,
-				8FA816631F0FDF6500A6C613 /* CarouselItem.swift in Sources */,
-				8FA816611F0FDB6F00A6C613 /* CardAction.swift in Sources */,
-				8FA816571F0FCBEC00A6C613 /* NatBotService.swift in Sources */,
+				8F7932E91F1E527B006D5DF5 /* BotBubble.swift in Sources */,
 				8F7476371ED47D4B0050842D /* ChatCollectionViewController.swift in Sources */,
-				8FA8165D1F0FD86E00A6C613 /* Attachment.swift in Sources */,
 				8FDBAEF21EDF25E900BFD635 /* Message.swift in Sources */,
+				8F7932EB1F1E52C8006D5DF5 /* SenderBubble.swift in Sources */,
 				8FDBE9B91ECB27E800CD272C /* RedViewController.swift in Sources */,
 				8F4EFE491EC30E8900D0B88B /* ViewController.swift in Sources */,
 				8F3009DC1EC3486700D7813D /* BlueViewController.swift in Sources */,
@@ -447,7 +428,6 @@
 				8F3145F21EDD633100E23398 /* Message+CoreDataProperties.swift in Sources */,
 				8F3145E21EDC6BCF00E23398 /* TestModelleuh.xcdatamodeld in Sources */,
 				8FA8165A1F0FCC3000A6C613 /* DYDUChatBotManager.swift in Sources */,
-				8FA8165F1F0FDAC500A6C613 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

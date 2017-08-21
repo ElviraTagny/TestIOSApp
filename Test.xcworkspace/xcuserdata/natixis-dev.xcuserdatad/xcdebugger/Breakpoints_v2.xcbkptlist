@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "MessageCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "MessageCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "ChatCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,7 +234,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/ChatCollectionViewController.swift"
+            timestampString = "522082051.988066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/ChatCollectionViewController.swift"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "270"
@@ -250,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,43 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "ChatCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -362,27 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "ChatCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -394,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "ChatCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -410,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -496,11 +480,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -512,11 +496,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -528,11 +512,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -544,11 +528,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "collectionView(_:shouldHighlightItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -560,11 +544,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082472.382828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -576,11 +560,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "ChatCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -592,11 +576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -608,11 +592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -624,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -640,11 +624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -656,11 +640,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -672,11 +656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "speechRecognizer(_:availabilityDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -688,11 +672,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -704,11 +688,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -736,27 +720,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -768,11 +736,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -784,11 +752,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -800,11 +768,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "profileImageView"
             landmarkType = "24">
          </BreakpointContent>
@@ -816,11 +784,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "speakerButton"
             landmarkType = "24">
          </BreakpointContent>
@@ -837,22 +805,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "10"
             endingLineNumber = "10">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1054,11 +1006,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "onDisplayMessage(message:)"
             landmarkType = "7">
             <Locations>
@@ -1102,11 +1054,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "onSendButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1118,11 +1070,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "onSendButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1134,11 +1086,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "onDisplayMessage(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1150,11 +1102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
+            timestampString = "522082051.988066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "onSendButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,22 +1124,6 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "onSendButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
-            landmarkName = "onDisplayMessage(message:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1252,22 +1188,6 @@
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "dydu_receivedTalkResponse(withMsg:withExtraParameters:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Test/ChatCollectionViewController.swift"
-            timestampString = "522062592.250363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "417"
-            endingLineNumber = "417"
-            landmarkName = "onDisplayMessage(message:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
